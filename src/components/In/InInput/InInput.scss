@@ -2,6 +2,7 @@
 
 .InInput {
   width: 100%;
+  position: relative;
   
   .InInput-text {
     width: calc(100% - 2rem);
@@ -13,6 +14,20 @@
     background-color: $base-color;
     color: $base-bg;
     font-weight: bold;
+    position: relative;
+  }
+
+  .InInput-button {
+    position: absolute;
+    right: 24px;
+    top: 0.9rem;
+    box-shadow: 0 0 8px -2px rgba(0,0,0,0.4);
+    height: 1.2rem;
+    border: none;
+    background-color: $base-bg;
+    width: 2.4rem;
+    border-radius: 4px;
+    outline: none;
   }
 
   .InInput-below {
