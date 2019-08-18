@@ -1,0 +1,51 @@
+{
+  "name": "aml",
+  "version": "0.1.0",
+  "description": "a kanban app built with the gtd philosophy in mind",
+  "private": true,
+  "author": "Ibrahim Saberi <georgeipsum@gmail.com>",
+  "main": "public/electron.js",
+  "dependencies": {
+    "electron-is-dev": "^1.1.0",
+    "react": "^16.9.0",
+    "react-dev-utils": "^9.0.3",
+    "react-dom": "^16.9.0",
+    "react-scripts": "^3.1.1",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "dev": "yarn react-scripts start",
+    "build": "react-scripts build",
+    "start": "concurrently \"cross-env BROWSER=none yarn react-scripts start\" \"wait-on http://localhost:3000 && electron .\"",
+    "test": "react-scripts test",
+    "pack": "electron-builder --dir",
+    "dist": "npx build --x64 --maxos --win --linux --c.extraMetadata.main=build/electron.js -p always"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.7.2",
+    "@types/react-dom": "^16.8.5",
+    "concurrently": "^4.1.2",
+    "cross-env": "^5.2.0",
+    "electron": "^6.0.2",
+    "electron-builder": "^21.2.0",
+    "electron-devtools-installer": "^2.2.4",
+    "version-bump-prompt": "^5.0.4",
+    "wait-on": "^3.3.0"
+  }
+}
