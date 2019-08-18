@@ -18,9 +18,9 @@ if [ "$TYPE" = "c" ] || [ "$TYPE" = "component" ]; then
 
   mkdir -p $COMPONENTNAME
 
-  printf '%s\n' ".${NAME} {}" > "${COMPONENTNAME}/${NAME}.scss"
-  printf '%b\n' "import React from 'react';" "import './${NAME}.scss';" "" "type ${NAME}Props = {};" "type ${NAME}State = {};" "" "export default class ${NAME} extends React.Component {" "\trender() {" "\t\treturn(" "\t\t\t<div className=\"${NAME}\"></div>" "\t\t);" "\t}" "}"> "${COMPONENTNAME}/${NAME}.tsx"
-  printf '%b\n' "import React from 'react';" "import ReactDOM from 'react-dom';" "import ${NAME} from ./${NAME};" "it('renders without crashing', ()=> {" "\tconst div = document.createElement('div');" "\tReactDOM.render(<${NAME} />, div);" "\tReactDOM.unmountComponentAtNode(div);" "});" > "${COMPONENTNAME}/${NAME}.test.tsx"
+  printf '%s\n' "@import '../../assets/styles.scss';" "" ".${NAME} {}" > "${COMPONENTNAME}/${NAME}.scss"
+  printf '%b\n' "import React from 'react';" "import './${NAME}.scss';" "" "type ${NAME}Props = {};" "type ${NAME}State = {};" "" "export default class ${NAME} extends React.Component<${NAME}Props, ${NAME}State> {" "\trender() {" "\t\treturn(" "\t\t\t<div className=\"${NAME}\"></div>" "\t\t);" "\t}" "}"> "${COMPONENTNAME}/${NAME}.tsx"
+  printf '%b\n' "import React from 'react';" "import ReactDOM from 'react-dom';" "import ${NAME} from './${NAME};'" "" "it('renders without crashing', () => {" "\tconst div = document.createElement('div');" "\tReactDOM.render(<${NAME} />, div);" "\tReactDOM.unmountComponentAtNode(div);" "});" > "${COMPONENTNAME}/${NAME}.test.tsx"
   printf '%s\n' "export { default } from './${NAME}';" > "${COMPONENTNAME}/index.ts"
 elif [ "$TYPE" = "d" ] || [ "$TYPE" = "dummy" ]; then
   DUMMYNAME="src/dummies/${NAME}"
@@ -32,9 +32,9 @@ elif [ "$TYPE" = "d" ] || [ "$TYPE" = "dummy" ]; then
 
   mkdir -p $DUMMYNAME
 
-  printf '%s\n' ".${NAME} {}" > "${COMPONENTNAME}/${NAME}.scss"
+  printf '%s\n' "@import '../../assets/styles.scss';" "" ".${NAME} {}" > "${COMPONENTNAME}/${NAME}.scss"
   printf '%b\n' "import React from 'react';" "import './${NAME}.scss';" "" "export default function ${NAME}(props) {" "\treturn(" "\t\t<div className=\"${NAME}\"></div>" "\t);" "}"> "${DUMMYNAME}/${NAME}.tsx"
-  printf '%b\n' "import React from 'react';" "import ReactDOM from 'react-dom';" "import ${NAME} from ./${NAME};" "it('renders without crashing', ()=> {" "\tconst div = document.createElement('div');" "\tReactDOM.render(<${NAME} />, div);" "\tReactDOM.unmountComponentAtNode(div);" "});" > "${DUMMYNAME}/${NAME}.test.tsx"
+  printf '%b\n' "import React from 'react';" "import ReactDOM from 'react-dom';" "import ${NAME} from './${NAME}';" "" "it('renders without crashing', () => {" "\tconst div = document.createElement('div');" "\tReactDOM.render(<${NAME} />, div);" "\tReactDOM.unmountComponentAtNode(div);" "});" > "${DUMMYNAME}/${NAME}.test.tsx"
   printf '%s\n' "export { default } from './${NAME}';" > "${DUMMYNAME}/index.ts"
 elif [ "$TYPE" = "u" ] || [ "$TYPE" = "utility" ]; then
   UTILITYNAME="src/utilities/${NAME}.ts"
