@@ -1,24 +1,25 @@
 import React from 'react';
 import './App.scss';
+import InParent from '../In';
 
-export default class App extends React.Component {
+type AppProps = {};
+type AppState = {
+  value: string,
+};
 
+export default class App extends React.Component<AppProps, AppState> {
+  constructor(props) {
+    super(props);
+
+    this.state = {value: ''};
+  }
+  
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="App-inner">
+          <InParent />
+        </div>
       </div>
     );
   }
