@@ -51,7 +51,7 @@ export default class InInput extends React.Component<InInputProps, InInputState>
 				<input value={this.state.value} className="InInput-text" placeholder={chooseRandomItem(placeholderTexts)} onChange={this.onInputEdit} onKeyDown={this.onSubmit} />
 				<button className="InInput-button" onClick={this.onSubmitButton} />
 				<div className="InInput-below">
-					{this.state.value === '' ? "" : "You said: " + this.state.value }
+					{this.state.value !== '' && "You said: " + this.state.value }
 				</div>
 			</div>
 		);

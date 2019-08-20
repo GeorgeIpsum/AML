@@ -1,3 +1,8 @@
+# General
+
+* configure mobx-state-tree models
+* better define (aka just define them at all) different statuses for input processing (also create a better name for the "in" list and then rename things)
+
 # In
 
 * Input

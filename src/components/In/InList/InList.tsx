@@ -12,7 +12,7 @@ export default class InList extends React.Component<InListProps, InListState> {
 	constructor(props) {
 		super(props);
 
-		this.state = {inList: this.props.inList};
+		this.state = {inList: this.props.inList ? this.props.inList : []};
 	}
 
 	componentDidUpdate(prevProps: InListProps) {
@@ -24,7 +24,7 @@ export default class InList extends React.Component<InListProps, InListState> {
 	render() {
 		return(
 			<div className="InList">
-				{this.state.inList.map((e,i) => (<div key={i}>{e}</div>))}
+				{this.state.inList.map((e) => (<div key={e}>{e}</div>))}
 			</div>
 		);
 	}
