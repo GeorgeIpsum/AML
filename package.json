@@ -1,12 +1,16 @@
 {
   "name": "aml",
   "version": "0.1.0",
-  "description": "a kanban app built with the gtd philosophy in mind",
+  "description": "an app to help you get things done in your daily life",
   "private": true,
   "author": "Ibrahim Saberi <georgeipsum@gmail.com>",
   "main": "public/electron.js",
   "dependencies": {
+    "apisauce": "^1.0.5",
     "electron-is-dev": "^1.1.0",
+    "mobx": "^5.13.0",
+    "mobx-react": "^6.1.3",
+    "mobx-state-tree": "^3.14.1",
     "react": "^16.9.0",
     "react-dev-utils": "^9.0.3",
     "react-dom": "^16.9.0",
@@ -46,8 +50,6 @@
     "electron": "^6.0.2",
     "electron-builder": "^21.2.0",
     "electron-devtools-installer": "^2.2.4",
-    "mobx": "^5.13.0",
-    "mobx-state-tree": "^3.14.1",
     "node-sass": "^4.12.0",
     "version-bump-prompt": "^5.0.4",
     "wait-on": "^3.3.0"
