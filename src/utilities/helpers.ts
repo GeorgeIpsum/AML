@@ -91,6 +91,14 @@ function _makeFlat(recursive) {
   };
 }
 
+
+/**
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * HERE BE THE EXPORTED FUNCTIONS
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
+
+ 
 /**
  * Adds a key value/ index value pair to an object, return original object if key or index already exists
  * 

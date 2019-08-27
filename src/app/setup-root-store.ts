@@ -1,6 +1,6 @@
 import { onSnapshot } from 'mobx-state-tree';
 import { RootStoreModel, RootStore } from '../models/root-store';
-import { Environment } from '../models/env';
+import { Environment } from '../models/environment';
 import * as storage from '../utilities/storage';
 import { Api } from '../services/api';
 import { DepositApi } from '../services/deposit-api';

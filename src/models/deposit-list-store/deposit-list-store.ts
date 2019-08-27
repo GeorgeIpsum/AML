@@ -1,7 +1,7 @@
 import { types, getEnv, getRoot } from 'mobx-state-tree';
 import { DepositModel, Deposit, DepositSnapshot } from '../deposit';
 //import { RootStore } from '../root-store';
-import { Environment } from '../env';
+import { Environment } from '../environment';
 import { flow } from 'mobx';
 
 export enum DepositStoreStatus {
