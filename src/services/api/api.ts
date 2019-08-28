@@ -9,10 +9,13 @@ export class Api {
   apisauce: ApisauceInstance;
   config: ApiConfig;
   auth: app.auth.Auth;
-  user: app.User;
+  user: app.User | null | any;
 
   constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
     this.config = config;
+    this.user = {
+      email: 'test'
+    };
   }
 
   setup() {
@@ -25,17 +28,6 @@ export class Api {
     app.initializeApp(firebaseConfig);
 
     this.auth = app.auth();
-
-    this.auth.onAuthStateChanged(user => {
-      if(user) {
-        console.log('auth state', user);
-        console.log('auth user 2', user.email);
-      } else {
-        console.log('auth state change', this.auth);
-      }
-    }, (error) => {
-      console.log('auth state error', error);
-    });
   }
 
   async getUser(username: string): Promise<Types.GetUserResult> {
@@ -58,16 +50,16 @@ export class Api {
 
   createUser = (email, password) => {
     this.auth.createUserWithEmailAndPassword(email, password).then((val) => {
-      console.log('fulfilled',val);
       this.user = val.user as app.User;
     }, (rsn) => {
-      console.log('rejected',rsn);
       this.signInUser(email, password);
     });
   }
 
-  signInUser = (email, password) => {
-    this.auth.signInWithEmailAndPassword(email, password).then((val) => { console.log('yesy',val) }, (rsn) => { console.log('no',rsn) });
+  signInUser = (email, password): Promise<app.auth.UserCredential> => {
+    let a = this.auth.signInWithEmailAndPassword(email, password);
+    return a;
+    // this.auth.signInWithEmailAndPassword(email, password).then((val) => { console.log('yesy',val); this.user = val.user; console.log(this.user); }, (rsn) => { console.log('no',rsn) });
   }
 
   signOutUser = () => this.auth.signOut();
