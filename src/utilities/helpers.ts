@@ -215,6 +215,7 @@ export const intersection = (a: any[], b: any[]) => {
 export const toHash = (object: Object, key: string) => {
   return Array.prototype.reduce.call(
     object,
+    // eslint-disable-next-line no-use-before-define
     (acc: any, data, index) => ((acc[!key ? index : data[key]] = data), acc),
     {}
   );

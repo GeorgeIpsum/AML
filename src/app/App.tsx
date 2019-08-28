@@ -21,7 +21,7 @@ export default class App extends React.Component<{}, AppState> {
 
     if(!rootStore) {
       return (
-        test
+        <div>test</div>
       );
     }
 
