@@ -1,6 +1,8 @@
 # General
 
 * configure mobx-state-tree models
+* set up firebase auth
+  * move environment related materials to rootStore model
 * better define (aka just define them at all) different statuses for input processing (also create a better name for the "in" list and then rename things)
 
 # In
