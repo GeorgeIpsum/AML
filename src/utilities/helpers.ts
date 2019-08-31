@@ -1,6 +1,6 @@
 //helpers.ts utility
 
-function _has(prop, obj) {
+export function _has(prop, obj): boolean {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
@@ -253,3 +253,4 @@ export const mergeAll = _curry1(function mergeAll(list) {
 export const flatten = _curry1(_makeFlat(true));
 
 export const isNil = _curry1(function isNil(x) { return x == null; });
+

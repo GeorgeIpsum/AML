@@ -1,6 +1,7 @@
 import { types, getEnv } from 'mobx-state-tree';
 //add other store model imports here here
 import { DepositListStoreModel } from '../deposit-list-store';
+import { Environment } from '../environment';
 
 /**
  * The RootStore model
@@ -13,7 +14,7 @@ export const RootStoreModel = types.model("RootStore")
   })
   .views(self => ({
     get environment() {
-      return getEnv(self)
+      return getEnv(self) as Environment;
     }
   }))
   .actions(self => ({

@@ -13,19 +13,24 @@ export enum DepositStatus {
 
 export const DepositModel = types.model("Deposit")
   .props({
-    id: types.identifierNumber,
+    id: types.optional(types.identifier, 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx'),
     value: types.string,
-    status: types.optional(types.enumeration<DepositStatus>("DepositStatus", Object.values(DepositStatus)), DepositStatus.unprocessed)
+    status: types.optional(types.enumeration<DepositStatus>("DepositStatus", Object.values(DepositStatus)), DepositStatus.unprocessed),
+    dateAdded: types.optional(types.Date, new Date()),
+    dateEdited: types.optional(types.Date, new Date()),
+    hash: types.optional(types.string, '')
   })
   .actions(self => ({
-    setId(value: number) {
+    setId(value: string) {
       self.id = value;
     },
     setValue(value: string) {
       self.value = value;
+      self.dateEdited = new Date();
     },
     setStatus(value: DepositStatus) {
       self.status = value;
+      self.dateEdited = new Date();
     }
   }));
 
