@@ -49,6 +49,16 @@ export const DepositListStoreModel = types.model("DepositListStore")
       } else {
         return false;
       }
+    },
+    changeDeposit(index, {value, status}) {
+      if(self.deposits && self.deposits[index]) {
+        if(value) {
+          self.deposits[index].setValue(value);
+        }
+        if(status) {
+          self.deposits[index].setStatus(status);
+        }
+      }
     }
   }))
   .views(self => ({
@@ -62,7 +72,7 @@ export const DepositListStoreModel = types.model("DepositListStore")
       return self.status === "pending";
     },
     get chronoView() {
-      return self.deposits.sort((d1, d2) => {
+      return self.deposits.slice().sort((d1, d2) => {
         return d1.dateAdded.getTime() < d2.dateAdded.getTime() ? 1 : -1;
       });
     }

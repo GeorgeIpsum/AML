@@ -5,6 +5,7 @@ import { DepositStatus } from '../../models/deposit';
 import { observer } from 'mobx-react';
 import './root-component.scss';
 import DepositForm from '../deposit-form';
+import DepositListItem from '../deposit-list-item';
 
 interface RootComponentProps {
   rootStore: RootStore;
@@ -31,12 +32,20 @@ export default class RootComponent extends React.Component<RootComponentProps, {
     this.props.depositStore.setDeposits(null);
   }
 
+  onChangeStatus = (event, hash) => {
+    const depositIndex = this.props.depositStore.deposits.findIndex((d) => d.hash === hash);
+    this.props.depositStore.changeDeposit(depositIndex, {status: this.props.depositStore.deposits[depositIndex].status === DepositStatus.unprocessed ? DepositStatus.actedUpon : DepositStatus.unprocessed});
+  }
+
   render() {
-    const deposits = this.props.depositStore.chronoView;
+    const deposits = this.props.depositStore.chronoView.map((d) => {
+      return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} />)
+    }) as any;
+
     return (
       <div className="Root">
         <DepositForm onSubmit={this.onDepositFormSubmit} onClear={this.onClear} />
-        { deposits && deposits.map((d) => (<div key={d.hash}>{d.dateAdded.toString()} || {d.value}</div>)) }
+        { deposits }
       </div>
     );
   }
