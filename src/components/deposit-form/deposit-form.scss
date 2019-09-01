@@ -2,9 +2,62 @@
 
 .Deposit-Form {
   width: 100%;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 1rem;
 
-.Deposit-Form-Input {
-  height: 32px;
-  font-size: 24px;
+  
+  .Deposit-Form-Input {
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+    outline: none;
+    border: none;
+    box-shadow: inset 0 0 1.5rem -0.8rem $base-bg;
+    padding: 0.4rem 0.6rem;
+    margin: 0;
+    width: calc(100% - 2rem);
+  }
+
+  .Input-Border {
+    width: 100%;
+    height: 4px;
+    border-radius: 3px 0 3px 3px;
+    background: $cerulean-blue;
+  }
+
+  .Deposit-Submit {
+    transition: all 150ms ease;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: calc(16px + 1rem);
+    outline: none;
+    border: none;
+    border-radius: 0 8px 0 0;
+    text-transform: uppercase;
+    font-size: calc(10px + 0.1vmin);
+    font-weight: 700;
+    padding: 0 1rem;
+    color: $other-1;
+    background-color: $cerulean-blue;
+    &:hover {
+      box-shadow: inset 0 0 8px -3px lighten($base-bg, 10%);
+    }
+  }
+
+  .Deposit-Clear {
+    transition: all 150ms ease;
+    position: absolute;
+    top: 0;
+    right: 56px;
+    padding: 0.4rem 0.4rem;
+    color: $base-bg;
+    &:hover {
+      color: lighten($base-bg, 10%);
+    }
+  }
 }

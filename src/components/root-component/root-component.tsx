@@ -28,7 +28,7 @@ export default class RootComponent extends React.Component<RootComponentProps, {
     this.props.depositStore.addDeposit(deposit);
   }
 
-  onClear = () => {
+  onClear = (event) => {
     this.props.depositStore.setDeposits(null);
   }
 
@@ -44,8 +44,9 @@ export default class RootComponent extends React.Component<RootComponentProps, {
 
     return (
       <div className="Root">
-        <DepositForm onSubmit={this.onDepositFormSubmit} onClear={this.onClear} />
+        <DepositForm onSubmit={this.onDepositFormSubmit} />
         { deposits }
+        <button type="button" onClick={this.onClear}>Clear Deposits</button>
       </div>
     );
   }

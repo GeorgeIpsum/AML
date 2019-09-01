@@ -1,10 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import './deposit-form.scss';
+import { X } from 'react-feather';
 
 interface DepositFormProps {
   onSubmit: any,
-  onClear: any
 };
 
 interface DepositFormState {
@@ -37,17 +37,23 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
     });
   }
 
-  onDepositsClear = (event) => {
-    this.props.onClear();
+  clearForm = (event) => {
+    this.setState({
+      formInput: ''
+    });
   }
 
   render() {
     return (
       <div className="Deposit-Form">
         <form onSubmit={this.onFormSubmit} className="Deposit-Form">
-          <input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="Deposit-Form Deposit-Form-Input" />
-          <input type="submit" />
-          <button type="button" onClick={this.onDepositsClear}>Clear</button>
+          <input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="Deposit-Form-Input" />
+          <div className="Input-Border"></div>
+          <input type="submit" className="Button Deposit-Submit" value="Add" />
+          {this.state.formInput !== ''
+            ? (<button type="button" className="Button Deposit-Clear" onClick={this.clearForm}><X size={20} /></button>)
+            : null 
+          }
         </form>
       </div>
     );
