@@ -7,7 +7,8 @@ import { observer } from 'mobx-react';
 
 interface AppState {
   rootStore?: RootStore,
-  userState: any
+  userState: any,
+  themeDark: boolean
 }
 
 @observer
@@ -17,6 +18,7 @@ export default class App extends React.Component<{}, AppState> {
     const rootStore = await setupRootStore();
     this.setState({
       userState: {},
+      themeDark: true,
       rootStore
     });
     rootStore.environment.api.auth.onAuthStateChanged(this.authStateChange, this.authStateChangeError);
@@ -42,6 +44,10 @@ export default class App extends React.Component<{}, AppState> {
   authStateChangeError = (error) => {
     console.log(error);
   }
+
+  changeTheme = () => {
+    this.setState({themeDark: !this.state.themeDark});
+  }
   
   render() {
     const rootStore = this.state && this.state.rootStore;
@@ -49,18 +55,19 @@ export default class App extends React.Component<{}, AppState> {
 
     if(!rootStore) {
       return (
-        <div>test</div>
+        <div>Initializing...</div>
       );
     }
 
     const depositStore = rootStore.depositStore;
 
     return (
-      <div className="App">
+      <div className={ this.state.themeDark ? "App Dark" : "App Light" }>
         <div className="App-inner">
           { email ? email : 'Loading...' }
           <RootComponent rootStore={rootStore} depositStore={depositStore} />
         </div>
+        <button type="button" className="Button Theme" onClick={this.changeTheme}>Change Theme</button>
       </div>
     );
   }

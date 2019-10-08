@@ -1,6 +1,5 @@
 # General
 
-* migrate all css to JSS
 * configure mobx-state-tree models
 * set up firebase auth
   * move environment related materials to rootStore model

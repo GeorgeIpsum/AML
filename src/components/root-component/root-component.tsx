@@ -13,11 +13,11 @@ interface RootComponentProps {
 }
 
 @observer
-export default class RootComponent extends React.Component<RootComponentProps, {value: string, test: any}> {
+export default class RootComponent extends React.Component<RootComponentProps, {value: string, test: any, hide?: boolean}> {
   constructor(props) {
     super(props);
 
-    this.state = {value: "", test: ""};
+    this.state = {value: "", test: "", hide: true};
   }
 
   onDepositFormSubmit = (value: string) => {
@@ -37,9 +37,21 @@ export default class RootComponent extends React.Component<RootComponentProps, {
     this.props.depositStore.changeDeposit(depositIndex, {status: this.props.depositStore.deposits[depositIndex].status === DepositStatus.unprocessed ? DepositStatus.actedUpon : DepositStatus.unprocessed});
   }
 
+  changeShown = () => {
+    this.setState({hide: !this.state.hide});
+  }
+
   render() {
     const deposits = this.props.depositStore.chronoView.map((d) => {
-      return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} />)
+      if(!this.state.hide) {
+        if(d.status===DepositStatus.unprocessed) {
+          return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} />)
+        } else {
+          return null;
+        }
+      } else {
+        return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} />)
+      }
     }) as any;
 
     return (
@@ -47,6 +59,7 @@ export default class RootComponent extends React.Component<RootComponentProps, {
         <DepositForm onSubmit={this.onDepositFormSubmit} />
         { deposits }
         <button type="button" onClick={this.onClear}>Clear Deposits</button>
+        <button type="button" onClick={this.changeShown}>{ this.state.hide ? 'Hide Finished' : 'Show Finished' }</button>
       </div>
     );
   }

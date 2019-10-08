@@ -43,10 +43,32 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
     });
   }
 
+  parseInput = (input: string) => {
+    const parsedInput = {
+      input,
+      place: '',
+      time: ''
+    };
+    if(input.search('@')) {
+      let split = input.split('@');
+      if(split[1]) {
+        parsedInput.place = split[1];
+        if(split[2]) {
+          parsedInput.input = split[0] + '' + split[2];
+        } else {
+          parsedInput.input = split[0];
+        }
+      }
+    }
+
+    return parsedInput;
+  }
+
   render() {
+    const parsedInput = this.parseInput(this.state.formInput); 
     return (
       <div className="Deposit-Form">
-        <form onSubmit={this.onFormSubmit} className="Deposit-Form">
+        <form onSubmit={this.onFormSubmit} className="Deposit-Form-Form">
           <input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="Deposit-Form-Input" />
           <div className="Input-Border"></div>
           <input type="submit" className="Button Deposit-Submit" value="Add" />
@@ -55,6 +77,10 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
             : null 
           }
         </form>
+        <div className="Parsed-Input">
+          <div className="Base-Input">{parsedInput.input}</div>
+          {parsedInput.place !== '' && (<div className="Place-Input"><span>Place: </span> {parsedInput.place}</div>)}
+        </div>
       </div>
     );
   }

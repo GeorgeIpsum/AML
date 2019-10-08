@@ -35,7 +35,7 @@ export default class DepositListItem extends React.Component<DepositListItemProp
 					<input type="checkbox" checked={this.state.checked} onChange={this.onCheckChange} />
 				</div>
 				<div className="Deposit-Value">
-					<div className="Value">{this.props.value}</div>
+					<div className="Value" style={{textDecoration: this.state.checked ? 'line-through' : 'none', textDecorationColor: 'rgba(255,255,255,0.7)'}}>{this.props.value}</div>
 					<div className="Date">{this.props.date.toDateString()}</div>
 				</div>
 			</div>

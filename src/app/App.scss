@@ -2,17 +2,35 @@
 
 .App {
   text-align: center;
-  background-color: $smoky-black;
-  color: $base-color;
+  &.Dark {
+    background-color: $smoky-black;
+    color: $base-color;
+  }
+  &.Light {
+    background-color: $other-1;
+    color: $base-bg;
+  }
 }
 
 .App-inner {
-  min-height: 100vh;
+  min-height: calc(100vh - 2rem);
   max-width: $max-width;
   margin: 0 auto;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  font-size: calc(8px + 1vmin);
+  font-size: calc(10px + 1vmin);
+}
+
+.Theme {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.6rem;
+  background: $dark !important;
+  color: $base-color;
+  border-radius: 4px;
+  font-weight: 600;
 }
