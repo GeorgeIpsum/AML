@@ -1,6 +1,6 @@
-# fruition
+# fruition ![🍉](readme-assets/fruition_32.png "Melon")
 
-> even your smallest dreams should come to fruition 🥝
+> even your smallest dreams should come to fruition
 
 ## getting-things-done-as-a-~~service~~-react-app
 
