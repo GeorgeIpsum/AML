@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.scss';
+
+import Button from '../dummies/button';
+
 import { RootStore } from '../models/root-store';
 import { setupRootStore } from './setup-root-store';
 import RootComponent from '../components/root-component';
@@ -51,7 +54,6 @@ export default class App extends React.Component<{}, AppState> {
   
   render() {
     const rootStore = this.state && this.state.rootStore;
-    const email = this.state && this.state.userState && this.state.userState.email;
 
     if(!rootStore) {
       return (
@@ -64,10 +66,9 @@ export default class App extends React.Component<{}, AppState> {
     return (
       <div className={ this.state.themeDark ? "App Dark" : "App Light" }>
         <div className="App-inner">
-          { email ? email : 'Loading...' }
           <RootComponent rootStore={rootStore} depositStore={depositStore} />
         </div>
-        <button type="button" className="Button Theme" onClick={this.changeTheme}>Change Theme</button>
+        <Button variant="theme" style={{position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.6rem'}} onClick={this.changeTheme}>Change Theme</Button>
       </div>
     );
   }
