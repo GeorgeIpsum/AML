@@ -5,6 +5,7 @@
   "private": true,
   "author": "Ibrahim Saberi <georgeipsum@gmail.com>",
   "main": "public/electron.js",
+  "homepage": "https://georgeipsum.github.io/fruition",
   "scripts": {
     "dev": "yarn react-scripts start",
     "build": "react-scripts build",
@@ -12,7 +13,8 @@
     "test": "react-scripts test",
     "pack": "electron-builder --dir",
     "dist": "npx build --x64 --maxos --win --linux --c.extraMetadata.main=build/electron.js -p always",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "gh-deploy": "gh-pages -d build"
   },
   "dependencies": {
     "apisauce": "^1.0.5",
@@ -54,6 +56,7 @@
     "electron": "^6.0.2",
     "electron-builder": "^21.2.0",
     "electron-devtools-installer": "^2.2.4",
+    "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0",
     "source-map-explorer": "^2.0.1",
     "version-bump-prompt": "^5.0.4",
