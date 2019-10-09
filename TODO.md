@@ -6,6 +6,7 @@
 * better define (aka just define them at all) different statuses for input processing (also create a better name for the "in" list and then rename things)
 * make generic api class and extend basic stuff from there
 * Make an alternative to input/ datalist for context switching because its Really Not That Good Ya Know
+  * bubble context changes in context selection up to deposit form and have deposit form submit context on deposit
 
 # In
 
