@@ -1,5 +1,18 @@
 @import '../../assets/styles.scss';
 
+.Deposit-Form {
+  margin-bottom: 3rem;
+
+  .Selections {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
 .Deposit-Form-Form {
   width: 100%;
   display: flex;

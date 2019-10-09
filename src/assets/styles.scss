@@ -1,3 +1,4 @@
+$font: 'Work Sans';
 $base-bg: #17252A;
 $base-color: #fffff8;
 $sage: #B8C480;
@@ -12,13 +13,3 @@ $cherry: #D1345B;
 $gradient-orange: #E79C76;
 $gradient-red: #D0596D;
 $gradient-1: linear-gradient(65deg, $gradient-orange, $gradient-red);
-
-.Button {
-  outline: none;
-  border: none;
-  background: none;
-  cursor: pointer;
-  color: $base-color;
-  border-radius: 4px;
-  font-weight: 600;
-}

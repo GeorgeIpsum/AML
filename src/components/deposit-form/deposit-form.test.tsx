@@ -12,6 +12,6 @@ const onSubmit = () => {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<DepositForm onClear={onClear} onSubmit={onSubmit} />, div);
+  ReactDOM.render(<DepositForm store={'asdf'} onSubmit={onSubmit} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

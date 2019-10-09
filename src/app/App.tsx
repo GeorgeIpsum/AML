@@ -29,7 +29,6 @@ export default class App extends React.Component<{}, AppState> {
 
   authStateChange = (val) => {
     if(val && val.email) {
-      val.email && console.log('root store', val.email);
       this.setState({
         userState: {
           email: val.email

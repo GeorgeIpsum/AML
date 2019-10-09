@@ -2,9 +2,11 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import './deposit-form.scss';
 import { X } from 'react-feather';
+import ContextSelect from '../context-select';
 
 interface DepositFormProps {
   onSubmit: any,
+  store: any
 };
 
 interface DepositFormState {
@@ -43,29 +45,14 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
     });
   }
 
-  parseInput = (input: string) => {
-    const parsedInput = {
-      input,
-      place: '',
-      time: ''
-    };
-    if(input.search('@')) {
-      let split = input.split('@');
-      if(split[1]) {
-        parsedInput.place = split[1];
-        if(split[2]) {
-          parsedInput.input = split[0] + '' + split[2];
-        } else {
-          parsedInput.input = split[0];
-        }
-      }
+  addContext = (name?: string) => {
+    if(!this.props.store.contextStore.findByName(name)) {
+      this.props.store.contextStore.addContext(name);
     }
-
-    return parsedInput;
   }
 
   render() {
-    const parsedInput = this.parseInput(this.state.formInput); 
+    const contexts = this.props && this.props.store && this.props.store.contextStore && this.props.store.contextStore.contexts;
     return (
       <div className="Deposit-Form">
         <form onSubmit={this.onFormSubmit} className="Deposit-Form-Form">
@@ -77,9 +64,9 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
             : null 
           }
         </form>
-        <div className="Parsed-Input">
-          <div className="Base-Input">{parsedInput.input}</div>
-          {parsedInput.place !== '' && (<div className="Place-Input"><span>Place: </span> {parsedInput.place}</div>)}
+
+        <div className="Selections">
+          <ContextSelect contexts={contexts} addContext={this.addContext} />
         </div>
       </div>
     );
