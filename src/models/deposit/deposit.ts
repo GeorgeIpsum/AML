@@ -1,4 +1,4 @@
-import { types } from 'mobx-state-tree';
+import { types, getRoot } from 'mobx-state-tree';
 
 export enum DepositStatus {
   unprocessed = "unprocessed",
@@ -19,7 +19,7 @@ export const DepositModel = types.model("Deposit")
     dateAdded: types.optional(types.Date, new Date()),
     dateEdited: types.optional(types.Date, new Date()),
     hash: types.optional(types.string, ''),
-    context: types.string
+    contextId: types.optional(types.string, '')
   })
   .actions(self => ({
     setId(value: string) {
@@ -32,6 +32,15 @@ export const DepositModel = types.model("Deposit")
     setStatus(value: DepositStatus) {
       self.status = value;
       self.dateEdited = new Date();
+    }
+  }))
+  .views(self => ({
+    get context() {
+      const root = getRoot(self);
+      if(root && root.contextStore) {
+        return root.contextStore.findById(self.contextId);
+      }
+      return '';
     }
   }));
 

@@ -3,7 +3,7 @@ import { DepositModel, Deposit, DepositSnapshot, DepositStatus } from '../deposi
 //import { RootStore } from '../root-store';
 import { Environment } from '../environment';
 import { flow } from 'mobx';
-import { UUIDGenerator } from '../../utilities/helpers';
+import { UUIDGenerator, compare } from '../../utilities/helpers';
 import * as hash from 'object-hash';
 import { LoadingStatus } from '../status';
 
@@ -36,14 +36,12 @@ export const DepositListStoreModel = types.model("DepositListStore")
           dateAdded: new Date(),
           dateEdited: new Date(),
           hash: hash({value: value, status: status, dateAdded: new Date()}),
-          context: context
+          contextId: context
         });
         const deposits = [...self.deposits, ...[deposit]];
         self.deposits.replace(deposits as any);
         return true;
-      } else {
-        return false;
-      }
+      } return false;
     },
     changeDeposit(index, {value, status}) {
       if(self.deposits && self.deposits[index]) {
@@ -72,7 +70,7 @@ export const DepositListStoreModel = types.model("DepositListStore")
     },
     get chronological() {
       return self.deposits.slice().sort((d1, d2) => {
-        return d1.dateAdded.getTime() < d2.dateAdded.getTime() ? 1 : d1.dateAdded.getTime() > d2.dateAdded.getTime() ? -1 : 0;
+        return compare(d1.dateAdded.getTime(), d2.dateAdded.getTime());
       });
     }
   }))
@@ -99,16 +97,14 @@ export const DepositListStoreModel = types.model("DepositListStore")
     chronoView(deposits?: any) {
       if(deposits) {
         return deposits.slice().sort((d1, d2) => {
-          return d1.dateAdded.getTime() < d2.dateAdded.getTime() ? 1 : d1.dateAdded.getTime() > d2.dateAdded.getTime() ? -1 : 0;
+          return compare(d1.dateAdded.getTime(), d2.dateAdded.getTime());
         });
       } else {
         return self.chronological;
       }
     },
     findByContext(contextID: string) {
-      return self.deposits.filter((deposit) => {
-        return deposit.context===contextID;
-      });
+      return self.deposits.filter((deposit) => deposit.contextId === contextID);
     }
   }));
 

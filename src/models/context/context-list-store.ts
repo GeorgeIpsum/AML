@@ -7,7 +7,8 @@ import { UUIDGenerator } from '../../utilities/helpers';
 export const ContextListStoreModel = types.model("ContextListStore")
   .props({
     status: types.optional(types.enumeration<LoadingStatus>("ContextListLoadingStatus", Object.values(LoadingStatus)), LoadingStatus.idle),
-    contexts: types.optional(types.array(ContextModel), [])
+    contexts: types.optional(types.array(ContextModel), []),
+    defaultContext: types.optional(types.string, 'ERROR')
   })
   .actions(self => ({
     setStatus(value: LoadingStatus) {
@@ -24,6 +25,11 @@ export const ContextListStoreModel = types.model("ContextListStore")
         self.contexts = value as any;
       }
     },
+    setDefaultContext(id: string) {
+      if(self.contexts && self.contexts.find((c) => c.id === id)) {
+        self.defaultContext = id;
+      }
+    },
     addContext(name: string = '') {
       if(self.contexts) {
         const context: Context = ContextModel.create({
@@ -33,19 +39,15 @@ export const ContextListStoreModel = types.model("ContextListStore")
         const contexts = [...self.contexts, ...[context]];
         self.contexts.replace(contexts as any);
         return true;
-      } else {
-        return false;
-      }
+      } return false;
     },
     changeContext(index, name?) {
       if(self.contexts && self.contexts[index]) {
         if(name) {
           self.contexts[index].setName(name);
           return true;
-        }
-        return false;
-      }
-      return false;
+        } return false;
+      } return false;
     }
   }))
   .views(self => ({
@@ -70,9 +72,13 @@ export const ContextListStoreModel = types.model("ContextListStore")
       const value = self.contexts.find((c) => c.name === name);
       if(value) {
         return value;
-      } else {
-        return false;
-      }
+      } return false;
+    },
+    findById(id: string) {
+      const value = self.contexts.find((c) => c.id === id);
+      if(value) {
+        return value;
+      } return false;
     }
   }));
 

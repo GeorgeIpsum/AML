@@ -16,7 +16,6 @@ export const ContextModel = types.model("Context")
       if(root && root.depositStore) {
         return root.depositStore.findByContext(self.id);
       }
-      console.log(root);
       return [];
     }
   }));
