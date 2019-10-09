@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.css": "/fruition/static/css/main.f6c29a34.chunk.css",
-    "main.js": "/fruition/static/js/main.6fcc2457.chunk.js",
-    "main.js.map": "/fruition/static/js/main.6fcc2457.chunk.js.map",
-    "runtime~main.js": "/fruition/static/js/runtime~main.c2438661.js",
-    "runtime~main.js.map": "/fruition/static/js/runtime~main.c2438661.js.map",
-    "static/js/2.82b9831f.chunk.js": "/fruition/static/js/2.82b9831f.chunk.js",
-    "static/js/2.82b9831f.chunk.js.map": "/fruition/static/js/2.82b9831f.chunk.js.map",
+    "main.css": "/fruition/static/css/main.df13aa39.chunk.css",
+    "main.js": "/fruition/static/js/main.f2b3105f.chunk.js",
+    "main.js.map": "/fruition/static/js/main.f2b3105f.chunk.js.map",
+    "runtime-main.js": "/fruition/static/js/runtime-main.1da8d57f.js",
+    "runtime-main.js.map": "/fruition/static/js/runtime-main.1da8d57f.js.map",
+    "static/js/2.b93a0e71.chunk.js": "/fruition/static/js/2.b93a0e71.chunk.js",
+    "static/js/2.b93a0e71.chunk.js.map": "/fruition/static/js/2.b93a0e71.chunk.js.map",
     "index.html": "/fruition/index.html",
-    "precache-manifest.dded6c38f120bfc65e5a2c0a0b4e9321.js": "/fruition/precache-manifest.dded6c38f120bfc65e5a2c0a0b4e9321.js",
+    "precache-manifest.07f5e76eb3970b7a07bbd489b7ae6bca.js": "/fruition/precache-manifest.07f5e76eb3970b7a07bbd489b7ae6bca.js",
     "service-worker.js": "/fruition/service-worker.js",
-    "static/css/main.f6c29a34.chunk.css.map": "/fruition/static/css/main.f6c29a34.chunk.css.map"
-  }
+    "static/css/main.df13aa39.chunk.css.map": "/fruition/static/css/main.df13aa39.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1da8d57f.js",
+    "static/js/2.b93a0e71.chunk.js",
+    "static/css/main.df13aa39.chunk.css",
+    "static/js/main.f2b3105f.chunk.js"
+  ]
 }
