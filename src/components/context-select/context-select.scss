@@ -1,34 +1,44 @@
 @import '../../assets/styles.scss';
 
 .Context {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  font-size: 0.8rem;
+  position: relative;
   text-align: left;
-  .add {
-    color: $maximum-blue-green;
-    margin-top: 0.6rem;
-    font-size: 1rem;
+  .current-context {
     cursor: pointer;
-    &:hover {
-      color: rgba($color: $maximum-blue-green, $alpha: 0.6)
+    display: flex;
+    align-content: center;
+    background-color: darken($cerulean-blue, 15);
+    padding: 0.4rem;
+    border-radius: 4px;
+    min-width: 80px;
+    .context {
+      margin-right: auto;
+    }
+    .arrow {
+      width: 1rem;
+      height: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 0.2rem;
+      .arrow-inner {
+        height: 0.3rem;
+        width: 0.6rem;
+        background-color: $other-1;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
     }
   }
-}
-
-.Context-Select {
-  margin-top: 1rem;
-  background: #DDD;
-  outline: none;
-  border: none;
-  border-radius: 4px;
-  padding: 0.4rem;
-  color: #222;
-  font-weight: 600;
-  &::placeholder {
-    color: #444;
+  .title {
+    font-size: 0.7rem;
+    padding-left: 0.4rem;
   }
-  &::-webkit-calendar-picker-indicator {
-    color: #444;
+  .other-contexts {
+    position: absolute;
+    top: 1.8rem;
+    .add-context {
+
+    }
   }
 }
