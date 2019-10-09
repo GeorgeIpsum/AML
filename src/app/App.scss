@@ -1,5 +1,9 @@
 @import '../assets/styles.scss';
 
+button, option, select, p, caption, input {
+  font-family: $font;
+}
+
 .App {
   text-align: center;
   &.Dark {
@@ -30,8 +34,4 @@
   right: 1rem;
   padding: 0.6rem;
   background: $dark !important;
-}
-
-button, option, select, p, caption {
-  font-family: $font;
 }
