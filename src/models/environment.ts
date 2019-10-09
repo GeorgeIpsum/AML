@@ -1,9 +1,11 @@
 import { Api } from '../services/api';
 import { DepositApi } from '../services/deposit-api';
+import { ContextApi } from '../services/context-api';
 
 export class Environment {
   api: Api;
   depositApi: DepositApi;
+  contextApi: ContextApi;
 };
 
 export const firebaseConfig = {

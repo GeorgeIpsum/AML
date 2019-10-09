@@ -1,6 +1,7 @@
 import { types, getEnv } from 'mobx-state-tree';
 //add other store model imports here here
 import { DepositListStoreModel } from '../deposit-list-store';
+import { ContextListStoreModel } from '../context';
 import { Environment } from '../environment';
 
 /**
@@ -10,6 +11,7 @@ export const RootStoreModel = types.model("RootStore")
   .props({
     //add other stores here in format: someStore: types.optional(SomeStoreModel, {})
     depositStore: types.optional(DepositListStoreModel, {}),
+    contextStore: types.optional(ContextListStoreModel, {}),
     user: types.optional(types.string, '')
   })
   .views(self => ({

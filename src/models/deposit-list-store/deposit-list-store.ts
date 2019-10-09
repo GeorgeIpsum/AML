@@ -5,21 +5,15 @@ import { Environment } from '../environment';
 import { flow } from 'mobx';
 import { UUIDGenerator } from '../../utilities/helpers';
 import * as hash from 'object-hash';
-
-export enum DepositStoreStatus {
-  idle = "idle",
-  pending = "pending",
-  done = "done",
-  error = "error"
-};
+import { LoadingStatus } from '../status';
 
 export const DepositListStoreModel = types.model("DepositListStore")
   .props({
-    status: types.optional(types.enumeration<DepositStoreStatus>("DepositStoreStatus", Object.values(DepositStoreStatus)), DepositStoreStatus.idle),
+    status: types.optional(types.enumeration<LoadingStatus>("DepositListLoadingStatus", Object.values(LoadingStatus)), LoadingStatus.idle),
     deposits: types.optional(types.array(DepositModel), [])
   })
   .actions(self => ({ //all setters go here
-    setStatus(value: DepositStoreStatus) {
+    setStatus(value: LoadingStatus) {
       self.status = value;
     },
     setDeposits(value: Deposit[] | DepositSnapshot[] | null) {
@@ -33,7 +27,7 @@ export const DepositListStoreModel = types.model("DepositListStore")
         self.deposits = value as any;
       }
     },
-    addDeposit({value, status} = {value: '', status: DepositStatus.unprocessed}): boolean {
+    addDeposit({value, status, context} = {value: '', status: DepositStatus.unprocessed, context: ''}): boolean {
       if(self.deposits) {
         const deposit: Deposit = DepositModel.create({
           id: UUIDGenerator(),
@@ -41,7 +35,8 @@ export const DepositListStoreModel = types.model("DepositListStore")
           status: status,
           dateAdded: new Date(),
           dateEdited: new Date(),
-          hash: hash({value: value, status: status, dateAdded: new Date()})
+          hash: hash({value: value, status: status, dateAdded: new Date()}),
+          context: context
         });
         const deposits = [...self.deposits, ...[deposit]];
         self.deposits.replace(deposits as any);
@@ -52,13 +47,17 @@ export const DepositListStoreModel = types.model("DepositListStore")
     },
     changeDeposit(index, {value, status}) {
       if(self.deposits && self.deposits[index]) {
-        if(value) {
+        if(value && value!=='') {
           self.deposits[index].setValue(value);
+          return true;
         }
-        if(status) {
+        if(status && status!=='') {
           self.deposits[index].setStatus(status);
+          return true;
         }
+        return false;
       }
+      return false;
     }
   }))
   .views(self => ({
@@ -71,15 +70,15 @@ export const DepositListStoreModel = types.model("DepositListStore")
     get isLoading() {
       return self.status === "pending";
     },
-    get chronoView() {
+    get chronological() {
       return self.deposits.slice().sort((d1, d2) => {
-        return d1.dateAdded.getTime() < d2.dateAdded.getTime() ? 1 : -1;
+        return d1.dateAdded.getTime() < d2.dateAdded.getTime() ? 1 : d1.dateAdded.getTime() > d2.dateAdded.getTime() ? -1 : 0;
       });
     }
   }))
   .actions(self => ({
     loadDeposits: flow(function*() {
-      self.setStatus(DepositStoreStatus.pending);
+      self.setStatus(LoadingStatus.pending);
       try { 
         const result = yield self.environment.depositApi.getDeposits();
 
@@ -87,14 +86,30 @@ export const DepositListStoreModel = types.model("DepositListStore")
         if(result.kind === "ok") {
           //@ts-ignore
           self.setDeposits(result.deposits);
-          self.setStatus(DepositStoreStatus.done);
+          self.setStatus(LoadingStatus.done);
         } else {
-          self.setStatus(DepositStoreStatus.error);
+          self.setStatus(LoadingStatus.error);
         }
       } catch {
-        self.setStatus(DepositStoreStatus.error);
+        self.setStatus(LoadingStatus.error);
       }
     }),
+  }))
+  .views(self => ({
+    chronoView(deposits?: any) {
+      if(deposits) {
+        return deposits.slice().sort((d1, d2) => {
+          return d1.dateAdded.getTime() < d2.dateAdded.getTime() ? 1 : d1.dateAdded.getTime() > d2.dateAdded.getTime() ? -1 : 0;
+        });
+      } else {
+        return self.chronological;
+      }
+    },
+    findByContext(contextID: string) {
+      return self.deposits.filter((deposit) => {
+        return deposit.context===contextID;
+      });
+    }
   }));
 
 type DepositStoreType = typeof DepositListStoreModel.Type;
