@@ -31,3 +31,7 @@
   padding: 0.6rem;
   background: $dark !important;
 }
+
+button, option, select, p, caption {
+  font-family: $font;
+}
