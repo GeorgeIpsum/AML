@@ -45,14 +45,9 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
     });
   }
 
-  addContext = (name?: string) => {
-    if(!this.props.store.contextStore.findByName(name)) {
-      this.props.store.contextStore.addContext(name);
-    }
-  }
-
   render() {
-    const contexts = this.props && this.props.store && this.props.store.contextStore && this.props.store.contextStore.contexts;
+    const contexts = this.props.store && this.props.store.contextStore;
+
     return (
       <div className="Deposit-Form">
         <form onSubmit={this.onFormSubmit} className="Deposit-Form-Form">
@@ -66,7 +61,7 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
         </form>
 
         <div className="Selections">
-          <ContextSelect contexts={contexts} addContext={this.addContext} />
+          <ContextSelect contextStore={contexts} />
         </div>
       </div>
     );

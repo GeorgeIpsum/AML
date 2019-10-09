@@ -15,6 +15,7 @@
   * actionable icon -> generate action
   * move to Some day/ maybe icon
   * incubate process?
+  * filter deposits
 
 # Next actions
 

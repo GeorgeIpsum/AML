@@ -25,16 +25,16 @@ export default class RootComponent extends React.Component<RootComponentProps, {
     const deposit = {
       value,
       status: DepositStatus.unprocessed,
-      context: ''
-    }
+      context: this.props.rootStore.contextStore.defaultContext
+    };
     this.props.depositStore.addDeposit(deposit);
   }
 
-  onClear = (event) => {
+  onClear = (event?: any) => {
     this.props.depositStore.setDeposits(null);
   }
 
-  onChangeStatus = (event, hash) => {
+  onChangeStatus = (event: any, hash: string) => {
     const depositIndex = this.props.depositStore.deposits.findIndex((d) => d.hash === hash);
     this.props.depositStore.changeDeposit(depositIndex, {value: '', status: this.props.depositStore.deposits[depositIndex].status === DepositStatus.unprocessed ? DepositStatus.actedUpon : DepositStatus.unprocessed});
   }
