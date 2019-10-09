@@ -14,7 +14,9 @@
     "pack": "electron-builder --dir",
     "dist": "npx build --x64 --maxos --win --linux --c.extraMetadata.main=build/electron.js -p always",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "gh-deploy": "gh-pages -d build"
+    "gh-deploy": "gh-pages -d build",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "apisauce": "^1.0.5",
