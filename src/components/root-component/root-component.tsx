@@ -7,10 +7,12 @@ import './root-component.scss';
 import DepositForm from '../deposit-form';
 import DepositListItem from '../deposit-list-item';
 import Button from '../../dummies/button';
+import { ContextStore } from '../../models/context';
 
 interface RootComponentProps {
   rootStore: RootStore;
   depositStore: DepositStore;
+  contextStore: ContextStore;
 }
 
 @observer
@@ -58,7 +60,7 @@ export default class RootComponent extends React.Component<RootComponentProps, {
 
     return (
       <div className="Root">
-        <DepositForm onSubmit={this.onDepositFormSubmit} store={this.props.rootStore} />
+        <DepositForm store={this.props.depositStore} context={this.props.contextStore} />
         <div className="Deposits">
           { deposits }
         </div>

@@ -4,11 +4,11 @@ import { observer } from 'mobx-react';
 import { PlusCircle } from 'react-feather';
 
 @observer
-export default class ContextSelect extends React.Component<{contextStore: any}, {selectedContext: any, isOpen: boolean, newContextInput: string, error: string}> {
+export default class ContextSelect extends React.Component<{store: any}, {selectedContext: any, isOpen: boolean, newContextInput: string, error: string}> {
   constructor(props) {
     super(props);
 
-    const defaultContext = this.props.contextStore.findById(this.props.contextStore.defaultContext);
+    const defaultContext = this.props.store.findById(this.props.store.defaultContext);
     this.state = {
       selectedContext: defaultContext,
       isOpen: false,
@@ -19,16 +19,16 @@ export default class ContextSelect extends React.Component<{contextStore: any}, 
 
   changeSelectedContext = (event: any) => {
     const id = event.target.id;
-    this.setState({selectedContext: this.props.contextStore.findById(id)});
-    this.props.contextStore.setDefaultContext(id);
+    this.setState({selectedContext: this.props.store.findById(id)});
+    this.props.store.setDefaultContext(id);
   }
 
   onFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { newContextInput } = this.state;
-    const { contextStore } = this.props;
-    if(newContextInput.length !== 0 && !contextStore.findByName(newContextInput)) {
-      contextStore.addContext(newContextInput);
+    const { store } = this.props;
+    if(newContextInput.length !== 0 && !store.findByName(newContextInput)) {
+      store.addContext(newContextInput);
     }
   }
 
@@ -42,11 +42,11 @@ export default class ContextSelect extends React.Component<{contextStore: any}, 
 
   render() {
     const { isOpen, selectedContext, newContextInput } = this.state;
-    const { contextStore } = this.props;
-    const contexts = contextStore.contexts.slice().filter((c) => c.id !== selectedContext.id).map(
+    const { store } = this.props;
+    const contexts = store.contexts.slice().filter((c) => c.id !== selectedContext.id).map(
       (c) => (<div key={c.id} id={c.id} className="context" onClick={this.changeSelectedContext}>{ c.name }</div>)
     );
-    const isDisabled = newContextInput.length === 0 || contextStore.findByName(newContextInput);
+    const isDisabled = newContextInput.length === 0 || store.findByName(newContextInput);
     return(
       <div className="Context">
         <div className="title">CONTEXT</div>

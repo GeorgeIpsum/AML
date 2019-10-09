@@ -10,7 +10,8 @@ import { LoadingStatus } from '../status';
 export const DepositListStoreModel = types.model("DepositListStore")
   .props({
     status: types.optional(types.enumeration<LoadingStatus>("DepositListLoadingStatus", Object.values(LoadingStatus)), LoadingStatus.idle),
-    deposits: types.optional(types.array(DepositModel), [])
+    deposits: types.optional(types.array(DepositModel), []),
+    currentlyTyping: types.optional(types.string, '')
   })
   .actions(self => ({ //all setters go here
     setStatus(value: LoadingStatus) {
@@ -26,6 +27,9 @@ export const DepositListStoreModel = types.model("DepositListStore")
       } else {
         self.deposits = value as any;
       }
+    },
+    setCurrentlyTyping(value: string) {
+      self.currentlyTyping = value;
     },
     addDeposit({value, status, context} = {value: '', status: DepositStatus.unprocessed, context: ''}): boolean {
       if(self.deposits) {

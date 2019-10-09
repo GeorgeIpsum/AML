@@ -3,10 +3,11 @@ import { observer } from 'mobx-react';
 import './deposit-form.scss';
 import { X } from 'react-feather';
 import ContextSelect from '../context-select';
+import { DepositStatus } from '../../models/deposit';
 
 interface DepositFormProps {
-  onSubmit: any,
-  store: any
+  store: any,
+  context: any
 };
 
 interface DepositFormState {
@@ -18,35 +19,34 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
   constructor(props) {
     super(props);
 
-    this.state = {
-      formInput: ''
-    };
+    this.state = { formInput: this.props.store.currentlyTyping };
   }
   
   onFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     if(this.state.formInput !== '') {
-      this.props.onSubmit(this.state.formInput);
+      const deposit = {
+        value: this.state.formInput,
+        status: DepositStatus.unprocessed,
+        context: this.props.context.defaultContext
+      };
+      this.props.store.addDeposit(deposit);
     }
-    this.setState({
-      formInput: ''
-    });
+    this.setState({ formInput: '' });
   }
 
   onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      formInput: event.target.value
-    });
+    this.setState({ formInput: event.target.value });
+    this.props.store.setCurrentlyTyping(event.target.value);
   }
 
-  clearForm = (event) => {
-    this.setState({
-      formInput: ''
-    });
+  clearForm = (event?: any) => {
+    this.setState({ formInput: '' });
+    this.props.store.setCurrentlyTyping('');
   }
 
   render() {
-    const contexts = this.props.store && this.props.store.contextStore;
+    const contexts = this.props.context;
 
     return (
       <div className="Deposit-Form">
@@ -61,7 +61,7 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
         </form>
 
         <div className="Selections">
-          <ContextSelect contextStore={contexts} />
+          <ContextSelect store={contexts} />
         </div>
       </div>
     );

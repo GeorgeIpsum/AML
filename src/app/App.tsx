@@ -61,11 +61,12 @@ export default class App extends React.Component<{}, AppState> {
     }
 
     const depositStore = rootStore.depositStore;
+    const contextStore = rootStore.contextStore;
 
     return (
       <div className={ this.state.themeDark ? "App Dark" : "App Light" }>
         <div className="App-inner">
-          <RootComponent rootStore={rootStore} depositStore={depositStore} />
+          <RootComponent rootStore={rootStore} depositStore={depositStore} contextStore={contextStore} />
         </div>
         <Button variant="theme" style={{position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.6rem'}} onClick={this.changeTheme}>Change Theme</Button>
       </div>
