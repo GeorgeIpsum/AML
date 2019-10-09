@@ -1,1 +1,12 @@
 @import '../../assets/styles.scss';
+
+.Button {
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: $base-color;
+  border-radius: 4px;
+  font-weight: 400;
+  padding: 0.6rem;
+}

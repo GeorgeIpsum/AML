@@ -1,4 +1,5 @@
 import React from 'react';
+import './button.scss';
 
 const Button = (props: any) => {
   const variant = props.variant && props.variant;
