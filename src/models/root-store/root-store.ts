@@ -12,7 +12,8 @@ export const RootStoreModel = types.model("RootStore")
     //add other stores here in format: someStore: types.optional(SomeStoreModel, {})
     depositStore: types.optional(DepositListStoreModel, {}),
     contextStore: types.optional(ContextListStoreModel, {}),
-    user: types.optional(types.string, '')
+    user: types.optional(types.string, ''),
+    isDarkTheme: types.optional(types.boolean, true)
   })
   .views(self => ({
     get environment() {
@@ -23,6 +24,10 @@ export const RootStoreModel = types.model("RootStore")
     signIn(email, password) {
       return self.environment.api.signInUser(email, password);
     },
+    changeTheme() {
+      self.isDarkTheme = !self.isDarkTheme;
+      return true;
+    }
   }));
 
 /**

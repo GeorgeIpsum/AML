@@ -11,7 +11,6 @@ import { observer } from 'mobx-react';
 interface AppState {
   rootStore?: RootStore,
   userState: any,
-  themeDark: boolean
 }
 
 @observer
@@ -21,7 +20,6 @@ export default class App extends React.Component<{}, AppState> {
     const rootStore = await setupRootStore();
     this.setState({
       userState: {},
-      themeDark: true,
       rootStore
     });
     rootStore.environment.api.auth.onAuthStateChanged(this.authStateChange, this.authStateChangeError);
@@ -48,7 +46,7 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   changeTheme = () => {
-    this.setState({themeDark: !this.state.themeDark});
+    this.state.rootStore && this.state.rootStore.changeTheme();
   }
   
   render() {
@@ -64,7 +62,7 @@ export default class App extends React.Component<{}, AppState> {
     const contextStore = rootStore.contextStore;
 
     return (
-      <div className={ this.state.themeDark ? "App Dark" : "App Light" }>
+      <div className={ rootStore.isDarkTheme ? "App Dark" : "App Light" }>
         <div className="App-inner">
           <RootComponent rootStore={rootStore} depositStore={depositStore} contextStore={contextStore} />
         </div>
