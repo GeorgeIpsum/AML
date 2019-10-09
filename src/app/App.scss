@@ -11,9 +11,10 @@ button, option, select, p, caption, input {
     color: $base-color;
   }
   &.Light {
-    background-color: $other-1;
+    background-color: #bbb;
     color: $base-bg;
   }
+  transition: all 150ms ease;
 }
 
 .App-inner {
