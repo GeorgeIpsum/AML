@@ -254,3 +254,12 @@ export const flatten = _curry1(_makeFlat(true));
 
 export const isNil = _curry1(function isNil(x) { return x == null; });
 
+/**
+ * compares two (assumedly comparable) values, returns -1 on a > b, 1 on b > a, and 0 on a == b
+ * @param a first value to be compared
+ * @param b second value to be compared
+ * @returns -1 (a > b), 1 (a < b), 0 (a == b)
+ */
+export const compare = (a: any, b: any): -1 | 1 | 0 => {
+  return (a > b) ? -1 : (a < b) ? 1 : 0;
+}
