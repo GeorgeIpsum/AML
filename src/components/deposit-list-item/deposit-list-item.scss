@@ -6,19 +6,35 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 1rem;
+  padding: 1rem 0;
+  border-bottom: 3px solid darken($base-bg, 2);
 
   .Deposit-Check {
     margin-right: 1rem;
   }
 
   .Deposit-Value {
+    width: 100%;
     .Value {
       font-weight: 600;
+      text-decoration-color: rgba(255,255,255,0.7);
     }
-    .Date {
-      color: $maximum-blue-green;
-      font-size: 12px;
+    .subitems {
+      margin-top: 0.2rem;
+      display: flex;
+      flex-flow: row wrap;
+      > div {
+        font-size: 12px;
+        width: auto;
+        margin-right: 1rem;
+      }
+      .Context {
+        color: $cherry; 
+      }
+      .Date {
+        margin-left: auto;
+        color: $maximum-blue-green;
+      }
     }
   }
 }

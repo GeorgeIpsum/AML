@@ -3,3 +3,10 @@
 .Root {
   width: 100%;
 }
+
+.Deposits {
+  width: calc(100% - 1.6rem);
+  padding: 0.6rem 0.8rem;
+  background: $base-bg;
+  border-radius: 4px;
+}

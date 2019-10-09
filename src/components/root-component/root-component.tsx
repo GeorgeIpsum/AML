@@ -47,19 +47,21 @@ export default class RootComponent extends React.Component<RootComponentProps, {
     const deposits = this.props.depositStore.chronological.map((d) => {
       if(!this.state.hide) {
         if(d.status===DepositStatus.unprocessed) {
-          return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} />)
+          return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.rootStore.contextStore.findById(d.contextId)} />)
         } else {
           return null;
         }
       } else {
-        return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} />)
+        return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.rootStore.contextStore.findById(d.contextId)} />)
       }
     }) as any;
 
     return (
       <div className="Root">
         <DepositForm onSubmit={this.onDepositFormSubmit} store={this.props.rootStore} />
-        { deposits }
+        <div className="Deposits">
+          { deposits }
+        </div>
         <Button style={{padding: '0.5rem', marginRight: '0.4rem'}} onClick={this.onClear}>Clear Deposits</Button>
         <Button style={{padding: '0.5rem'}} onClick={this.changeShown}>{ this.state.hide ? 'Hide Finished' : 'Show Finished' }</Button>
       </div>

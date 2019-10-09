@@ -6,7 +6,8 @@ type DepositListItemProps = {
 	date: Date,
 	status: boolean,
 	hash: string,
-	changeStatus: any
+	changeStatus: any,
+	context: any
 };
 type DepositListItemState = {
 	checked: boolean
@@ -29,14 +30,19 @@ export default class DepositListItem extends React.Component<DepositListItemProp
 	}
 
 	render() {
+		const { value, date, context } = this.props;
+		const { checked } = this.state;
 		return(
 			<div className="Deposit-List-Item">
 				<div className="Deposit-Check">
-					<input type="checkbox" checked={this.state.checked} onChange={this.onCheckChange} />
+					<input type="checkbox" checked={checked} onChange={this.onCheckChange} />
 				</div>
 				<div className="Deposit-Value">
-					<div className="Value" style={{textDecoration: this.state.checked ? 'line-through' : 'none', textDecorationColor: 'rgba(255,255,255,0.7)'}}>{this.props.value}</div>
-					<div className="Date">{this.props.date.toDateString()}</div>
+					<div className="Value" style={{textDecoration: checked ? 'line-through' : 'none'}}>{value}</div>
+					<div className="subitems">
+						<div className="Context">{ context.name }</div>
+						<div className="Date">{ date.toDateString() }</div>
+					</div>
 				</div>
 			</div>
 		);
