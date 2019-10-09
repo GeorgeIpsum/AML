@@ -1,4 +1,4 @@
-# fruition ![🍉](readme-assets/fruition_32.png "Melon")
+# ![🍉](readme-assets/fruition_32.png "Melon") fruition
 
 > even your smallest dreams should come to fruition
 
