@@ -2,8 +2,8 @@ import { types, getRoot } from 'mobx-state-tree';
 
 export const ContextModel = types.model("Context")
   .props({
-    id: types.identifier,
-    name: types.string
+    id: types.optional(types.identifier, 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx'),
+    name: types.optional(types.string, '')
   })
   .actions(self => ({
     setName(value: string) {

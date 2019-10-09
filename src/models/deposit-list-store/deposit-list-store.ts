@@ -52,10 +52,8 @@ export const DepositListStoreModel = types.model("DepositListStore")
         if(status && status!=='') {
           self.deposits[index].setStatus(status);
           return true;
-        }
-        return false;
-      }
-      return false;
+        } return false;
+      } return false;
     }
   }))
   .views(self => ({
