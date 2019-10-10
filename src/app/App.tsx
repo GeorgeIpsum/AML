@@ -38,13 +38,13 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   authStateChange = (val) => {
-    if(val && val.email) {
+    if(val && val.email && this._isMounted) {
       this.setState({
         userState: {
           email: val.email
         }
       });
-    } else {
+    } else if(this._isMounted) {
       this.setState({
         userState: {
           email: "not logged in"
