@@ -33,6 +33,7 @@
 
   
   .Deposit-Form-Input {
+    transition: all 150ms ease;
     font-size: 16px;
     font-weight: 600;
     border-radius: 4px 4px 0 0;
@@ -42,6 +43,9 @@
     padding: 0.4rem 0.6rem;
     margin: 0;
     width: calc(100% - 1.2rem);
+    &:focus {
+      box-shadow: inset 0 0 1.2rem -0.5rem $base-bg, inset 0 0 0.2rem $base-bg;
+    }
   }
 
   .Input-Border {

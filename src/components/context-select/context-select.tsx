@@ -17,6 +17,14 @@ export default class ContextSelect extends React.Component<{store: any}, {select
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('click', this.globalToggleOpen, true);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.globalToggleOpen, true);
+  }
+
   changeSelectedContext = (event: any) => {
     const id = event.target.id;
     this.setState({selectedContext: this.props.store.findById(id)});
@@ -29,6 +37,7 @@ export default class ContextSelect extends React.Component<{store: any}, {select
     const { store } = this.props;
     if(newContextInput.length !== 0 && !store.findByName(newContextInput)) {
       store.addContext(newContextInput);
+      this.setState({newContextInput: ''});
     }
   }
 
@@ -38,6 +47,15 @@ export default class ContextSelect extends React.Component<{store: any}, {select
 
   toggleOpen = () => {
     this.setState(state => ({isOpen: !state.isOpen}));
+  }
+
+  globalToggleOpen = (event) => {
+    if(event.target.id !== "currentContext"
+    && event.target.id !== "addNewContext"
+    && event.target.id !== "newContextForm"
+    && event.target.id !== "newContextLabel") {
+      this.setState({isOpen: false});
+    }
   }
 
   render() {
@@ -50,7 +68,7 @@ export default class ContextSelect extends React.Component<{store: any}, {select
     return(
       <div className="Context">
         <div className="title">CONTEXT</div>
-        <div className="current-context" onClick={this.toggleOpen} style={{borderRadius: isOpen ? '4px 4px 0 0' : ''}}>
+        <div id="currentContext" className="current-context" onClick={this.toggleOpen} style={{borderRadius: isOpen ? '4px 4px 0 0' : ''}}>
           <div className="context">{ selectedContext.name }</div>
           <div className="arrow">
             <div className="arrow-inner"></div>
@@ -59,8 +77,8 @@ export default class ContextSelect extends React.Component<{store: any}, {select
         <div className="other-contexts" style={{display: isOpen ? 'block' : 'none'}}>
           { contexts }
           <div className="add-context">
-            <form onSubmit={this.onFormSubmit}>
-              <label htmlFor="addNewContext">ADD CONTEXT</label>
+            <form id="newContextForm" onSubmit={this.onFormSubmit}>
+              <label id="newContextLabel" htmlFor="addNewContext">ADD CONTEXT</label>
               <input id="addNewContext" type="text" value={newContextInput} onChange={this.onInputChange} />
               <button type="submit" disabled={isDisabled}>
                 <PlusCircle size={16} />
