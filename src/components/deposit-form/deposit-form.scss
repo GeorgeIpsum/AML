@@ -1,9 +1,10 @@
 @import '../../assets/styles.scss';
 
 .Deposit-Form {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   position: sticky;
   top: 1rem;
+  z-index: 1000;
 
   .Selections {
     display: flex;
@@ -15,6 +16,10 @@
     background: $cerulean-blue;
     border-radius: 0 0 4px 4px;
     padding: 0.4rem;
+  }
+
+  @media screen and(max-width: $sm) {
+    top: 3.4rem;
   }
 }
 
@@ -78,24 +83,4 @@
     }
   }
 
-}
-
-.Parsed-Input {
-  margin-top: 8px;
-  text-align: left;
-  min-height: 1.4rem;
-  font-size: 1rem;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  flex-wrap: wrap;
-  
-  .Place-Input {
-    color: $sage;
-    font-weight: 500;
-    span {
-      margin-left: 8px;
-      font-weight: 600;
-    }
-  }
 }

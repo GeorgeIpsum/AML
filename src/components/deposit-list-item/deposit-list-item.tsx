@@ -17,9 +17,7 @@ export default class DepositListItem extends React.Component<DepositListItemProp
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			checked: this.props.status
-		};
+		this.state = { checked: props.status };
 	}
 
 	onCheckChange = (event: React.ChangeEvent<HTMLInputElement>) => {

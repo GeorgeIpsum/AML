@@ -1,8 +1,13 @@
 @import '../../assets/styles.scss';
 
 .Deposits {
-  width: calc(100% - 1.6rem);
+  width: 100%;
+}
+
+.Deposit-List {
+  width: calc(100% - 1.6rem - 6px);
   padding: 0.6rem 0.8rem;
   background: $base-bg;
   border-radius: 4px;
+  border: 3px solid lighten($base-bg, 10);
 }

@@ -19,7 +19,7 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
   constructor(props) {
     super(props);
 
-    this.state = { formInput: this.props.store.currentlyTyping };
+    this.state = { formInput: props.store.currentlyTyping };
   }
   
   onFormSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {

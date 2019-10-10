@@ -22,7 +22,7 @@ export default class Deposits extends React.Component<DepositsProps, DepositsSta
   constructor(props) {
     super(props);
 
-    this.state = { filters: {hide: false} };
+    this.state = { filters: { hide: false } };
   }
   onChangeStatus = (event: any, hash: string) => {
     const depositIndex = this.props.depositStore.deposits.findIndex((d) => d.hash === hash);
@@ -51,9 +51,9 @@ export default class Deposits extends React.Component<DepositsProps, DepositsSta
     }) as any;
 
     return (
-      <div className="Root">
+      <div className="Deposits">
         <DepositForm store={this.props.depositStore} context={this.props.contextStore} />
-        <div className="Deposits">
+        <div className="Deposit-List">
           { deposits }
         </div>
         <Button style={{padding: '0.5rem', marginRight: '0.4rem'}} onClick={this.onClear}>Clear Deposits</Button>

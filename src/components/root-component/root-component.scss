@@ -1,5 +1,11 @@
 @import '../../assets/styles.scss';
 
 .Root {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
   width: 100%;
+  .displayed-segment {
+    flex-grow: 1;
+  }
 }
