@@ -4,6 +4,9 @@ import App from './App';
 
 it('renders without crashing', async () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  await ReactDOM.render(<App />, div);
+  //we do this as a cheap hack to ensure the async setupRootStore in the mount lifecycle finishes executing
+  setTimeout(() => {
+    ReactDOM.unmountComponentAtNode(div);
+  }, 5000);
 });
