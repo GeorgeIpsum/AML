@@ -1,4 +1,5 @@
 //helpers.ts utility
+import MersenneTwister from './mersenne-twister';
 
 export function _has(prop, obj): boolean {
   return Object.prototype.hasOwnProperty.call(obj, prop);
@@ -91,6 +92,20 @@ function _makeFlat(recursive) {
   };
 }
 
+//these were created because window.crypto gives me lots of problems when running unit tests with jest. there was probably a better way for me to handle this, but this works
+const twister = new MersenneTwister(Math.random()*Number.MAX_SAFE_INTEGER);
+
+function randomFloat() {
+  return twister.random();
+}
+
+function getRandomValues(abv) {
+  var l = abv.length;
+  while(l--) {
+    abv[l] = Math.floor(randomFloat() * 256);
+  }
+  return abv;
+}
 
 /**
  * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -225,9 +240,10 @@ export const toHash = (object: Object, key: string) => {
  * Generates a UUID in a browser
  */
 export const UUIDGenerator = () => {
+  const rand = typeof crypto === 'object' ? crypto.getRandomValues(new Uint8Array(1)) : getRandomValues(new Uint8Array(1));
   //@ts-ignore
   return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
-    (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16)
+    (c ^ (rand[0] & (15 >> (c / 4)))).toString(16)
   );
 }
 

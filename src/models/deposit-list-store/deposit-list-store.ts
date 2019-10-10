@@ -4,7 +4,6 @@ import { DepositModel, Deposit, DepositSnapshot, DepositStatus } from '../deposi
 import { Environment } from '../environment';
 import { flow } from 'mobx';
 import { UUIDGenerator, compare } from '../../utilities/helpers';
-import * as hash from 'object-hash';
 import { LoadingStatus } from '../status';
 
 export const DepositListStoreModel = types.model("DepositListStore")
@@ -39,7 +38,6 @@ export const DepositListStoreModel = types.model("DepositListStore")
           status: status,
           dateAdded: new Date(),
           dateEdited: new Date(),
-          hash: hash({value: value, status: status, dateAdded: new Date()}),
           contextId: context
         });
         const deposits = [...self.deposits, ...[deposit]];

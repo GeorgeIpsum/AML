@@ -13,7 +13,8 @@ export const RootStoreModel = types.model("RootStore")
     depositStore: types.optional(DepositListStoreModel, {}),
     contextStore: types.optional(ContextListStoreModel, {}),
     user: types.optional(types.string, ''),
-    isDarkTheme: types.optional(types.boolean, true)
+    isDarkTheme: types.optional(types.boolean, true),
+    isNewStore: types.optional(types.boolean, true)
   })
   .views(self => ({
     get environment() {
@@ -27,6 +28,9 @@ export const RootStoreModel = types.model("RootStore")
     changeTheme() {
       self.isDarkTheme = !self.isDarkTheme;
       return true;
+    },
+    setIsNewStore(isNewStore: boolean) {
+      self.isNewStore = isNewStore;
     }
   }));
 

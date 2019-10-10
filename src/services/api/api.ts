@@ -18,16 +18,18 @@ export class Api {
     };
   }
 
-  setup() {
+  setup(useFirebase?: boolean) {
     this.apisauce = create({
       baseURL: this.config.url,
       timeout: this.config.timeout,
       headers: {},
     });
 
-    app.initializeApp(firebaseConfig);
+    if(useFirebase) {
+      app.initializeApp(firebaseConfig);
 
-    this.auth = app.auth();
+      this.auth = app.auth();
+    }
   }
 
   async getUser(username: string): Promise<Types.GetUserResult> {

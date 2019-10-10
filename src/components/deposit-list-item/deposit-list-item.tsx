@@ -5,9 +5,9 @@ type DepositListItemProps = {
 	value: string,
 	date: Date,
 	status: boolean,
-	hash: string,
 	changeStatus: any,
-	context: any
+	context: any,
+	depositId: string
 };
 type DepositListItemState = {
 	checked: boolean
@@ -24,7 +24,7 @@ export default class DepositListItem extends React.Component<DepositListItemProp
 		this.setState({
 			checked: !this.state.checked
 		});
-		this.props.changeStatus(event, this.props.hash);
+		this.props.changeStatus(event, this.props.depositId);
 	}
 
 	render() {

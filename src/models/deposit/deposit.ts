@@ -18,7 +18,6 @@ export const DepositModel = types.model("Deposit")
     status: types.optional(types.enumeration<DepositStatus>("DepositStatus", Object.values(DepositStatus)), DepositStatus.unprocessed),
     dateAdded: types.optional(types.Date, new Date()),
     dateEdited: types.optional(types.Date, new Date()),
-    hash: types.optional(types.string, ''),
     contextId: types.optional(types.string, '')
   })
   .actions(self => ({

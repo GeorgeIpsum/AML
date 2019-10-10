@@ -24,8 +24,8 @@ export default class Deposits extends React.Component<DepositsProps, DepositsSta
 
     this.state = { filters: { hide: false } };
   }
-  onChangeStatus = (event: any, hash: string) => {
-    const depositIndex = this.props.depositStore.deposits.findIndex((d) => d.hash === hash);
+  onChangeStatus = (event: any, id: string) => {
+    const depositIndex = this.props.depositStore.deposits.findIndex((d) => d.id === id);
     this.props.depositStore.changeDeposit(depositIndex, {value: '', status: this.props.depositStore.deposits[depositIndex].status === DepositStatus.unprocessed ? DepositStatus.actedUpon : DepositStatus.unprocessed});
   }
 
@@ -41,12 +41,12 @@ export default class Deposits extends React.Component<DepositsProps, DepositsSta
     const deposits = this.props.depositStore.chronological.map((d) => {
       if(!this.state.filters.hide) {
         if(d.status===DepositStatus.unprocessed) {
-          return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} />)
+          return (<DepositListItem key={d.id} depositId={d.id} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} />)
         } else {
           return null;
         }
       } else {
-        return (<DepositListItem key={d.hash} hash={d.hash} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} />)
+        return (<DepositListItem key={d.id} depositId={d.id} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} />)
       }
     }) as any;
 

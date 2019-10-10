@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DepositForm from './deposit-form';
+import Deposits from './deposits';
 import { setupRootStore } from '../../utilities/setup-root-store';
 
 it('renders without crashing', async () => {
   const div = document.createElement('div');
   const rootStore = await setupRootStore(false);
-  ReactDOM.render(<DepositForm store={rootStore.depositStore} context={rootStore.contextStore} />, div);
+  ReactDOM.render(<Deposits depositStore={rootStore.depositStore} contextStore={rootStore.contextStore} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

@@ -1,10 +1,8 @@
 import React from 'react';
 import './App.scss';
-
 import Button from '../dummies/button';
-
 import { RootStore } from '../models/root-store';
-import { setupRootStore } from './setup-root-store';
+import { setupRootStore } from '../utilities/setup-root-store';
 import RootComponent from '../components/root-component';
 import { observer } from 'mobx-react';
 
@@ -15,14 +13,28 @@ interface AppState {
 
 @observer
 export default class App extends React.Component<{}, AppState> {
-  
+  unsubscribeFromAuthStateChanges;
+  _isMounted = false;
+
   async componentDidMount() {
-    const rootStore = await setupRootStore();
-    this.setState({
-      userState: {},
-      rootStore
-    });
-    rootStore.environment.api.auth.onAuthStateChanged(this.authStateChange, this.authStateChangeError);
+    this._isMounted = true;
+    const rootStore = await setupRootStore(false);
+    if(this._isMounted) {
+      this.setState({
+        userState: {},
+        rootStore
+      });
+    }
+    if(rootStore.environment.api.auth) {
+      this.unsubscribeFromAuthStateChanges = rootStore.environment.api.auth.onAuthStateChanged(this.authStateChange, this.authStateChangeError);
+    }
+  }
+
+  componentWillUnmount() {
+    if(this.unsubscribeFromAuthStateChanges) {
+      this.unsubscribeFromAuthStateChanges();
+    }
+    this._isMounted = false;
   }
 
   authStateChange = (val) => {
@@ -46,6 +58,7 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   changeTheme = () => {
+    console.log(this.state);
     this.state.rootStore && this.state.rootStore.changeTheme();
   }
   

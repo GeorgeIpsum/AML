@@ -1,7 +1,7 @@
 import { onSnapshot, getSnapshot } from 'mobx-state-tree';
 import { RootStoreModel, RootStore } from '../models/root-store';
 import { Environment } from '../models/environment';
-import * as storage from '../utilities/storage';
+import * as storage from './storage';
 import { Api } from '../services/api';
 import { DepositApi } from '../services/deposit-api';
 import { ContextApi } from '../services/context-api';
@@ -11,20 +11,20 @@ import { DepositStatus } from '../models/deposit';
 
 const ROOT_STATE_STORAGE_KEY = "AML";
 
-export async function setupRootStore() {
+export async function setupRootStore(useFirebase?: boolean) {
   let rootStore: RootStore;
   let data: any;
-  const DEFAULT_ROOT_STORE = createDefaultRootStore();
 
-  const env = await createEnvironment();
+  const env = await createEnvironment(useFirebase);
   try {
-    data = (await storage.load(ROOT_STATE_STORAGE_KEY)) || DEFAULT_ROOT_STORE;
+    data = (await storage.load(ROOT_STATE_STORAGE_KEY)) || defaultRootStore();
     rootStore = RootStoreModel.create(data, env);
   } catch {
-    rootStore = RootStoreModel.create(DEFAULT_ROOT_STORE, env);
+    rootStore = RootStoreModel.create(defaultRootStore(), env);
   }
 
-  if(data === DEFAULT_ROOT_STORE) {
+  if(rootStore.isNewStore) {
+    rootStore.setIsNewStore(false);
     storage.save(ROOT_STATE_STORAGE_KEY, getSnapshot(rootStore));
   }
 
@@ -33,21 +33,21 @@ export async function setupRootStore() {
   return rootStore;
 }
 
-export async function createEnvironment() {
+export async function createEnvironment(useFirebase?: boolean) {
   const env = new Environment();
 
   env.api = new Api();
   env.depositApi = new DepositApi();
   env.contextApi = new ContextApi();
 
-  await env.api.setup();
+  await env.api.setup(useFirebase);
   await env.depositApi.setup();
   await env.contextApi.setup();
 
   return env;
 }
 
-export function createDefaultRootStore() {
+export function defaultRootStore() {
   const defaultContextListStore = ContextListStoreModel.create();
   defaultContextListStore.addContext('Default');
   defaultContextListStore.setDefaultContext(defaultContextListStore.contexts[0].id);
@@ -59,5 +59,5 @@ export function createDefaultRootStore() {
     context: defaultContextListStore.contexts[0].id
   });
 
-  return { depositStore: defaultDepositListStore, contextStore: defaultContextListStore};
+  return { depositStore: defaultDepositListStore, contextStore: defaultContextListStore };
 }
