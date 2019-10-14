@@ -2,7 +2,7 @@
 
 > even your smallest dreams should come to fruition
 
-[![Build Status](https://travis-ci.com/GeorgeIpsum/fruition.svg?branch=master)](https://travis-ci.com/GeorgeIpsum/fruition)
+[![Build Status](https://travis-ci.com/GeorgeIpsum/fruition.svg?branch=master)](https://travis-ci.com/GeorgeIpsum/fruition) [![Coverage by shields.io](https://shields.io)](https://img.shields.io/badge/dynamic/xml?color=blue&label=coverage&query=round%2810000%2A%28%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredstatements%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredconditionals%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredmethods%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredelements%29div%28%2F%2Fmetrics%5B%40complexity%5D%2F%40methods%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40conditionals%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40elements%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40statements%29%29div%28100%29&suffix=%25&url=https%3A%2F%2Fgeorgeipsum.github.io%2Ffruition%2Fcoverage%2Fcoverage.xml&color=informational&suffix=%25)
 
 ## getting-things-done-as-a-~~service~~-react-app
 
