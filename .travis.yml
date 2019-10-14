@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - 12.4.0
+
+env:
+  - CI=true
+  - CI_BUILD=true
+
+cache:
+  directories:
+    - node_modules
+    - brand
+
+branches:
+  only:
+    - master
+    - gh-pages
+
+script:
+  - if [ "${CI}" = "true" ]; then npm run test -- --coverage; fi
+  - if [ "${CI_BUILD}" = "true" ]; then npm run build; fi
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_S_KEY
+  keep_history: true
+  local_dir: build
+  on:
+    branch: master
