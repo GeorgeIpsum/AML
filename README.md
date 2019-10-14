@@ -2,7 +2,7 @@
 
 > even your smallest dreams should come to fruition
 
-[![Build Status](https://travis-ci.com/GeorgeIpsum/fruition.svg?branch=master)](https://travis-ci.com/GeorgeIpsum/fruition) [![Coverage by jest, this badge by shields.io](https://georgeipsum.github.io/fruition/coverage)](https://img.shields.io/badge/dynamic/xml?color=informationals&label=coverage&query=round%2810000%2A%28%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredstatements%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredconditionals%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredmethods%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40coveredelements%29div%28%2F%2Fmetrics%5B%40complexity%5D%2F%40methods%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40conditionals%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40elements%2B%2F%2Fmetrics%5B%40complexity%5D%2F%40statements%29%29div%28100%29&suffix=%25&url=https%3A%2F%2Fgeorgeipsum.github.io%2Ffruition%2Fcoverage%2Fcoverage.xml)
+[![Build Status](https://travis-ci.com/GeorgeIpsum/fruition.svg?branch=master)](https://travis-ci.com/GeorgeIpsum/fruition) [![Coverage by jest, this badge by shields.io](https://georgeipsum.github.io/fruition/coverage)](https://img.shields.io/badge/dynamic/xml?color=informational&label=coverage&query=%2F%2Fdiv%5B%40class%3D%22clearfix%22%5D%2Fdiv%5B1%5D%2Fspan%5B1%5D%2Ftext%28%29&url=https%3A%2F%2Fgeorgeipsum.github.io%2Ffruition%2Fcoverage%2Findex.html)
 
 ## getting-things-done-as-a-~~service~~-react-app
 
