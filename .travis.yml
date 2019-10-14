@@ -13,8 +13,9 @@ branches:
     - gh-pages
 
 script:
-  - npm run test -- --coverage --watchAll=false
-  - npm run build; if[ -e coverage/lcov-report/index.html ] then cp coverage/lcov-report/index.html build/coverage.html; fi
+  - yarn test --coverage --watchAll=false
+  - yarn build
+  - [ -e coverage/lcov-report ] && cp -a coverage/lcov-report build/coverage
 
 deploy:
   provider: pages
