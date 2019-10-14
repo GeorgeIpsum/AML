@@ -2,10 +2,6 @@ language: node_js
 node_js:
   - 12.4.0
 
-env:
-  - CI=true
-  - CI_BUILD=true
-
 cache:
   directories:
     - node_modules
@@ -17,8 +13,8 @@ branches:
     - gh-pages
 
 script:
-  - if [ "${CI}" = "true" ]; then npm run test -- --coverage; fi
-  - if [ "${CI_BUILD}" = "true" ]; then npm run build; fi
+  - npm run test -- --coverage --watchAll=false
+  - npm run build; if[ -e coverage/lcov-report/index.html ] then cp coverage/lcov-report/index.html build/coverage.html; fi
 
 deploy:
   provider: pages
