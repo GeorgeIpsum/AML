@@ -1,4 +1,5 @@
 language: node_js
+
 node_js:
   - 12.4.0
 
@@ -15,7 +16,7 @@ branches:
 script:
   - yarn test --coverage --watchAll=false
   - yarn build
-  - [ -e coverage/lcov-report ] && cp -a coverage/lcov-report build/coverage
+  - echo 'COPYING COVERAGE' && [ -e coverage/lcov-report ] && cp -a coverage/lcov-report build/coverage
 
 deploy:
   provider: pages
