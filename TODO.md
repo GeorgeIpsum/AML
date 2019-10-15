@@ -6,6 +6,7 @@
 * make generic api class and extend basic stuff from there
 * change all of these css class names to not be silly and randomly capitalized
 * combine deposit and deposit-list-store folder structure
+* add generator scripts for models/ apis
 
 # In
 
