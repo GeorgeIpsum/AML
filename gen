@@ -6,7 +6,7 @@ function gen () {
   local filename=''
   local internal=''
 
-  if [ -z "$NAME" ]; then
+  if [ -z "$name" ]; then
     echo "No name provided"
     exit 0
   fi
