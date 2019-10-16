@@ -4,52 +4,42 @@ import { DepositStore } from '../../models/deposit-list-store';
 import { ContextStore } from '../../models/context';
 import { observer } from 'mobx-react';
 import './root-component.scss';
+import Dashboard from '../../segments/dashboard';
 import Deposits from '../../segments/deposits';
-import Nav from '../../segments/nav';
+import Projects from '../../segments/projects';
+import Stats from '../../segments/stats';
 import Options from '../../segments/options';
-import { Edit, Settings } from 'react-feather';
 
 interface RootComponentProps {
   rootStore: RootStore;
   depositStore: DepositStore;
   contextStore: ContextStore;
+  currentRoute: string;
 }
 
 interface RootComponentState {
-  currentNav: any
 }
 
 @observer
 export default class RootComponent extends React.Component<RootComponentProps, RootComponentState> {
-  navItems: any;
-  constructor(props) {
-    super(props);
-
-    this.state = { currentNav: 'Deposits' };
-    this.navItems = [
-      {
-        name: "Deposits",
-        icon: (<Edit size={20} />)
-      }, {
-        name: "Options",
-        icon: (<Settings size={20} />)
-      }
-    ];
-  }
-
-  onSegmentChange = (segment: string) => {
-    this.setState({ currentNav: segment });
-  }
 
   render() {
-    const { depositStore, contextStore } = this.props;
-    const { currentNav } = this.state;
+    const { depositStore, contextStore, currentRoute } = this.props;
     let navItem;
-    switch(currentNav) {
-      case "Deposits":
+    switch(currentRoute) {
+      case "dashboard":
+        navItem = (<Dashboard />);
+        break;
+      case "deposits":
         navItem = (<Deposits depositStore={depositStore} contextStore={contextStore} />);
         break;
-      case "Options":
+      case "projects":
+        navItem = (<Projects />);
+        break;
+      case "stats":
+        navItem = (<Stats />);
+        break;
+      case "options":
         navItem = (<Options />);
         break;
       default:
@@ -59,7 +49,6 @@ export default class RootComponent extends React.Component<RootComponentProps, R
 
     return (
       <div className="Root">
-        <Nav onSegmentChange={this.onSegmentChange} initialNavState={'Deposits'} navItems={this.navItems} />
         <div className="displayed-segment">
           { navItem }
         </div>

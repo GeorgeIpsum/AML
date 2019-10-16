@@ -2,33 +2,32 @@
 
 .Nav {
   position: sticky;
-  top: 1rem;
-  z-index: 1000;
-  text-align: right;
-  width: calc(200px - 1rem);
+  top: 0;
+  box-sizing: border-box;
+  z-index: 0;
+  width: 80px;
   display: flex;
-  flex-flow: column wrap;
+  margin: 0;
+  flex-flow: column nowrap;
   justify-content: flex-start;
-  align-items: flex-start;
-  margin: 0 1rem 1rem 0;
-  background: $base-bg;
-  border-radius: 4px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  height: auto;
-  border: 3px solid lighten($base-bg, 10);
-  color: $other-1;
+  align-items: center;
+  background: $darkest;
+  padding: 2rem 0;
+  height: 100vh;
+  color: $light;
 
   .Nav-Item {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    text-align: center;
     transition: all 150ms ease;
     cursor: pointer;
     width: calc(100% - 1.4rem);
-    padding: 0.8rem 1rem 0.8rem 0.4rem;
+    padding: 1.5rem;
     align-items: center;
     &:hover {
-      background: lighten($base-bg, 10);
+      background: lighten($darkest, 10);
     }
     .nav-text {
       pointer-events: none;
@@ -36,8 +35,10 @@
     }
     .nav-icon {
       pointer-events: none;
-      margin-left: 0.5rem;
-      margin-right: auto;
+    }
+
+    &:last-of-type {
+      margin-top: auto;
     }
   }
 
@@ -65,4 +66,10 @@
       }
     }
   }
+}
+
+.logo {
+  pointer-events: none;
+  height: 48px;
+  width: 48px;
 }
