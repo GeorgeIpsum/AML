@@ -40,6 +40,10 @@
     &:last-of-type {
       margin-top: auto;
     }
+
+    &.Active {
+      background: lighten($darkest, 10);
+    }
   }
 
   @media screen and (max-width: $sm) {
