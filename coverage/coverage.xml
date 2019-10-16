@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1571255979562" clover="3.2.0">
-  <project timestamp="1571255979562" name="All files">
-    <metrics statements="578" coveredstatements="241" conditionals="286" coveredconditionals="47" methods="181" coveredmethods="66" elements="1045" coveredelements="354" complexity="0" loc="578" ncloc="578" packages="22" files="52" classes="52"/>
+<coverage generated="1571260755276" clover="3.2.0">
+  <project timestamp="1571260755277" name="All files">
+    <metrics statements="578" coveredstatements="241" conditionals="286" coveredconditionals="47" methods="181" coveredmethods="66" elements="1045" coveredelements="354" complexity="0" loc="578" ncloc="578" packages="21" files="51" classes="51"/>
     <package name="src">
       <metrics statements="40" coveredstatements="0" conditionals="32" coveredconditionals="0" methods="15" coveredmethods="0"/>
       <file name="index.tsx" path="/home/travis/build/GeorgeIpsum/fruition/src/index.tsx">
@@ -280,29 +280,8 @@
       </file>
     </package>
     <package name="src.models.deposit">
-      <metrics statements="12" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="2"/>
-      <file name="deposit.ts" path="/home/travis/build/GeorgeIpsum/fruition/src/models/deposit/deposit.ts">
-        <metrics statements="12" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="2"/>
-        <line num="14" count="6" type="stmt"/>
-        <line num="23" count="6" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-      </file>
-      <file name="index.ts" path="/home/travis/build/GeorgeIpsum/fruition/src/models/deposit/index.ts">
-        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      </file>
-    </package>
-    <package name="src.models.deposit-list-store">
-      <metrics statements="45" coveredstatements="11" conditionals="23" coveredconditionals="1" methods="19" coveredmethods="6"/>
-      <file name="deposit-list-store.ts" path="/home/travis/build/GeorgeIpsum/fruition/src/models/deposit-list-store/deposit-list-store.ts">
+      <metrics statements="57" coveredstatements="14" conditionals="27" coveredconditionals="1" methods="25" coveredmethods="8"/>
+      <file name="deposit-list-store.ts" path="/home/travis/build/GeorgeIpsum/fruition/src/models/deposit/deposit-list-store.ts">
         <metrics statements="45" coveredstatements="11" conditionals="23" coveredconditionals="1" methods="19" coveredmethods="6"/>
         <line num="9" count="6" type="stmt"/>
         <line num="15" count="6" type="stmt"/>
@@ -350,7 +329,22 @@
         <line num="103" count="0" type="stmt"/>
         <line num="107" count="0" type="stmt"/>
       </file>
-      <file name="index.ts" path="/home/travis/build/GeorgeIpsum/fruition/src/models/deposit-list-store/index.ts">
+      <file name="deposit.ts" path="/home/travis/build/GeorgeIpsum/fruition/src/models/deposit/deposit.ts">
+        <metrics statements="12" coveredstatements="3" conditionals="4" coveredconditionals="0" methods="6" coveredmethods="2"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/home/travis/build/GeorgeIpsum/fruition/src/models/deposit/index.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>

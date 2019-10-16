@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f533abf667884f4015b9b01410297a41",
+    "revision": "4b48f2ec239132b3247f66e9312b93ed",
     "url": "/fruition/index.html"
   },
   {
-    "revision": "4f0e4aa3861a2608c2ba",
+    "revision": "0a24071065416c770dfe",
     "url": "/fruition/static/css/main.f4cd10b0.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fruition/static/js/2.8252fdac.chunk.js"
   },
   {
-    "revision": "4f0e4aa3861a2608c2ba",
-    "url": "/fruition/static/js/main.bc792949.chunk.js"
+    "revision": "0a24071065416c770dfe",
+    "url": "/fruition/static/js/main.92625560.chunk.js"
   },
   {
     "revision": "828dc89c1f211a1f29d9",
