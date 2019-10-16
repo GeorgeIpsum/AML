@@ -1,5 +1,5 @@
 import { types, getEnv, getRoot } from 'mobx-state-tree';
-import { DepositModel, Deposit, DepositSnapshot, DepositStatus } from '../deposit';
+import { DepositModel, Deposit, DepositSnapshot, DepositStatus } from '.';
 //import { RootStore } from '../root-store';
 import { Environment } from '../environment';
 import { flow } from 'mobx';
