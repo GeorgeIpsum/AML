@@ -12,9 +12,11 @@ export const RootStoreModel = types.model("RootStore")
     //add other stores here in format: someStore: types.optional(SomeStoreModel, {})
     depositStore: types.optional(DepositListStoreModel, {}),
     contextStore: types.optional(ContextListStoreModel, {}),
+    projectStore: types.optional(types.string, 'test'),
     user: types.optional(types.string, ''),
     isDarkTheme: types.optional(types.boolean, true),
-    isNewStore: types.optional(types.boolean, true)
+    isNewStore: types.optional(types.boolean, true),
+    currentRoute: types.optional(types.string, 'dashboard'),
   })
   .views(self => ({
     get environment() {
@@ -31,6 +33,9 @@ export const RootStoreModel = types.model("RootStore")
     },
     setIsNewStore(isNewStore: boolean) {
       self.isNewStore = isNewStore;
+    },
+    setCurrentRoute(route: string) {
+      self.currentRoute = route;
     }
   }));
 
