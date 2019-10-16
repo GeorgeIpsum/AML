@@ -1,5 +1,5 @@
 import React from 'react';
-import { DepositStore } from '../../models/deposit-list-store';
+import { DepositStore } from '../../models/deposit';
 import { DepositStatus } from '../../models/deposit';
 import { observer } from 'mobx-react';
 import './deposits.scss';

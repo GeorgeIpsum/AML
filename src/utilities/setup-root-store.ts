@@ -6,7 +6,7 @@ import { Api } from '../services/api';
 import { DepositApi } from '../services/deposit-api';
 import { ContextApi } from '../services/context-api';
 import { ContextListStoreModel } from '../models/context';
-import { DepositListStoreModel } from '../models/deposit-list-store';
+import { DepositListStoreModel } from '../models/deposit';
 import { DepositStatus } from '../models/deposit';
 
 const ROOT_STATE_STORAGE_KEY = "AML";

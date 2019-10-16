@@ -1,6 +1,6 @@
 import React from 'react';
 import { RootStore } from '../../models/root-store';
-import { DepositStore } from '../../models/deposit-list-store';
+import { DepositStore } from '../../models/deposit';
 import { ContextStore } from '../../models/context';
 import { observer } from 'mobx-react';
 import './root-component.scss';

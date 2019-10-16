@@ -1,6 +1,6 @@
 import { types, getEnv } from 'mobx-state-tree';
 //add other store model imports here here
-import { DepositListStoreModel } from '../deposit-list-store';
+import { DepositListStoreModel } from '../deposit';
 import { ContextListStoreModel } from '../context';
 import { Environment } from '../environment';
 
