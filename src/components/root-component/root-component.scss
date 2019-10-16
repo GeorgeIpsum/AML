@@ -1,10 +1,16 @@
 @import '../../assets/styles.scss';
 
 .Root {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 1rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: calc(10px + 1vmin);
   flex-flow: row wrap;
-  align-items: flex-start;
-  width: 100%;
+  width: calc(100% - 2rem);
   .displayed-segment {
     flex-grow: 1;
   }

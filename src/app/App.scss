@@ -5,28 +5,28 @@ button, option, select, p, caption, input {
 }
 
 .App {
-  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  min-height: 100vh;
   &.Dark {
-    background-color: $smoky-black;
-    color: $base-color;
+    background-color: $darkest;
+    color: $light;
   }
   &.Light {
     background-color: #A6A1D9;
-    color: $base-bg;
+    color: $bg-1;
   }
   transition: all 150ms ease;
 }
 
 .App-inner {
-  min-height: calc(100vh - 2rem);
-  max-width: $max-width;
-  margin: 0 auto;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: calc(10px + 1vmin);
+  position: relative;
+  background: $bg-gradient;
+  min-height: 100vh;
+  flex-grow: 1;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -4px 0 12px $shadow;
 }
 
 .Theme {

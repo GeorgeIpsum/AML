@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.scss';
-import Button from '../dummies/button';
 import { RootStore } from '../models/root-store';
 import { setupRootStore } from '../utilities/setup-root-store';
 import RootComponent from '../components/root-component';
 import { observer } from 'mobx-react';
+import Nav from '../segments/nav';
+import { Grid, CheckCircle, Layers, PieChart, Settings } from 'react-feather';
+import Button from '../dummies/button';
 
 interface AppState {
   rootStore?: RootStore,
@@ -13,18 +15,40 @@ interface AppState {
 
 @observer
 export default class App extends React.Component<{}, AppState> {
-  unsubscribeFromAuthStateChanges;
-  _isMounted = false;
+  navItems: any;
+  unsubscribeFromAuthStateChanges: firebase.Unsubscribe;
+  _isMounted: boolean = false;
 
   async componentDidMount() {
     this._isMounted = true;
+    this.navItems = [
+      {
+        name: "dashboard",
+        icon: (<Grid size={24} />)
+      }, {
+        name: "deposits",
+        icon: (<CheckCircle size={24} />)
+      }, {
+        name: "projects",
+        icon: (<Layers size={24} />)
+      }, {
+        name: "stats",
+        icon: (<PieChart size={24} />)
+      }, {
+        name: "options",
+        icon: (<Settings size={24} />)
+      }
+    ];
+
     const rootStore = await setupRootStore(false);
+
     if(this._isMounted) {
       this.setState({
         userState: {},
         rootStore
       });
     }
+
     if(rootStore.environment.api.auth) {
       this.unsubscribeFromAuthStateChanges = rootStore.environment.api.auth.onAuthStateChanged(this.authStateChange, this.authStateChangeError);
     }
@@ -58,8 +82,11 @@ export default class App extends React.Component<{}, AppState> {
   }
 
   changeTheme = () => {
-    console.log(this.state);
     this.state.rootStore && this.state.rootStore.changeTheme();
+  }
+
+  onSegmentChange = (segment: string) => {
+    this.state.rootStore && this.state.rootStore.setCurrentRoute(segment);
   }
   
   render() {
@@ -76,8 +103,9 @@ export default class App extends React.Component<{}, AppState> {
 
     return (
       <div className={ rootStore.isDarkTheme ? "App Dark" : "App Light" }>
+        <Nav onSegmentChange={this.onSegmentChange} initialNavState={rootStore.currentRoute} navItems={this.navItems} />
         <div className="App-inner">
-          <RootComponent rootStore={rootStore} depositStore={depositStore} contextStore={contextStore} />
+          <RootComponent currentRoute={rootStore.currentRoute} rootStore={rootStore} depositStore={depositStore} contextStore={contextStore} />
         </div>
         <Button variant="theme" style={{position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.6rem'}} onClick={this.changeTheme}>Change Theme</Button>
       </div>
