@@ -14,5 +14,14 @@ $gradient-orange: #E79C76;
 $gradient-red: #D0596D;
 $gradient-1: linear-gradient(65deg, $gradient-orange, $gradient-red);
 
+$light: #F6FDE8;
+$darkest: #171430;
+$bg-1: #110C3C;
+$bg-2: #3A11BD;
+$bg-gradient: linear-gradient(220deg, $bg-1 0%, $bg-2 330%);
+$red: #D4145A;
+$orange: #FBB03B;
+$red-orange-gradient: linear-gradient(120deg, $orange, $red);
+
 //breakpoints
 $sm: 800px;
