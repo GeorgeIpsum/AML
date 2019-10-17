@@ -3,6 +3,7 @@ import { types, getEnv } from 'mobx-state-tree';
 import { DepositListStoreModel } from '../deposit';
 import { ContextListStoreModel } from '../context';
 import { Environment } from '../environment';
+import { ProjectListStoreModel } from '../project';
 
 /**
  * The RootStore model
@@ -12,7 +13,7 @@ export const RootStoreModel = types.model("RootStore")
     //add other stores here in format: someStore: types.optional(SomeStoreModel, {})
     depositStore: types.optional(DepositListStoreModel, {}),
     contextStore: types.optional(ContextListStoreModel, {}),
-    projectStore: types.optional(types.string, 'test'),
+    projectStore: types.optional(ProjectListStoreModel, {}),
     user: types.optional(types.string, ''),
     isDarkTheme: types.optional(types.boolean, true),
     isNewStore: types.optional(types.boolean, true),

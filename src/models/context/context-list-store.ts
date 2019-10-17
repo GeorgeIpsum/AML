@@ -2,7 +2,7 @@ import { types, getEnv, getRoot } from 'mobx-state-tree';
 import { Environment } from '../environment';
 import { LoadingStatus } from '../status';
 import { ContextModel, Context, ContextSnapshot } from './context';
-import { UUIDGenerator } from '../../utilities/helpers';
+import { UUIDGenerator, compare } from '../../utilities/helpers';
 
 export const ContextListStoreModel = types.model("ContextListStore")
   .props({
@@ -63,7 +63,7 @@ export const ContextListStoreModel = types.model("ContextListStore")
     get alphabetical() {
       return self.contexts.slice().sort((c1, c2) => {
         const C1 = c1.name.toUpperCase(); const C2 = c2.name.toUpperCase();
-        return (C2 < C1) ? -1 : (C1 > C2) ? 1 : 0;
+        return compare(C1, C2);
       });
     }
   }))

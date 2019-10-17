@@ -105,6 +105,9 @@ export const DepositListStoreModel = types.model("DepositListStore")
     },
     findByContext(contextID: string) {
       return self.deposits.filter((deposit) => deposit.contextId === contextID);
+    },
+    findByProject(projectID: string) {
+      return self.deposits.filter((deposit) => deposit.projectId === projectID);
     }
   }));
 

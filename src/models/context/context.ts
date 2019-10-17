@@ -15,8 +15,7 @@ export const ContextModel = types.model("Context")
       const root = getRoot(self);
       if(root && root.depositStore) {
         return root.depositStore.findByContext(self.id);
-      }
-      return [];
+      } return [];
     }
   }));
 
