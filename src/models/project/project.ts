@@ -5,8 +5,8 @@ export const ProjectModel = types.model("Project")
     id: types.optional(types.identifier, 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx'),
     name: types.optional(types.string, 'New Project'),
     active: types.optional(types.boolean, false),
-    dateAdded: types.optional(types.Date, new Date()),
-    dateEdited: types.optional(types.Date, new Date()),
+    dateAdded: types.optional(types.Date, () => new Date()),
+    dateEdited: types.optional(types.Date, () => new Date()),
     dateCompleted: types.optional(types.union(types.boolean, types.Date), false),
   })
   .actions(self => ({
