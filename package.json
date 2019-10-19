@@ -68,7 +68,8 @@
       "src/segments/**/*.{tsx,ts}",
       "src/services/*.{tsx,ts}",
       "src/services/**/*.{tsx,ts}",
-      "src/utilities/*.{tsx,ts}"
+      "src/utilities/*.{tsx,ts}",
+      "!src/utilities/helpers.ts"
     ]
   },
   "browserslist": {
