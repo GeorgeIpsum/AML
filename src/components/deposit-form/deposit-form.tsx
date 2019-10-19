@@ -1,11 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import './deposit-form.scss';
-import { X } from 'react-feather';
 import ItemSelect from '../item-select';
 import { DepositStatus, DepositStore } from '../../models/deposit';
 import { ContextStore } from '../../models/context';
 import { ProjectStore } from '../../models/project';
+import DepositFormInput from '../../dummies/deposit-form-input';
 
 interface DepositFormProps {
   store: DepositStore;
@@ -44,7 +44,7 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
     this.props.store.setCurrentlyTyping(event.target.value);
   }
 
-  clearForm = (event?: any) => {
+  clearForm = (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     this.setState({ formInput: '' });
     this.props.store.setCurrentlyTyping('');
   }
@@ -54,15 +54,9 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
 
     return (
       <div className="Deposit-Form">
-        <form onSubmit={this.onFormSubmit} className="deposit-form-form">
-          <input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="deposit-form-input" />
-          <div className="input-border"></div>
-          <input type="submit" className="deposit-submit" value="Add" disabled={this.state.formInput === ''} />
-          {this.state.formInput !== ''
-            ? (<button type="button" className="deposit-clear" onClick={this.clearForm}><X size={20} /></button>)
-            : null 
-          }
-        </form>
+        <DepositFormInput className="deposit-form-form" formInput={this.state.formInput} placeholder="What's on your mind?" onSubmit={this.onFormSubmit} onInputChange={this.onInputChange} onInputClear={this.clearForm} />
+
+        <div className="input-border"></div>
 
         <div className="selections">
           <ItemSelect id="Context" store={context} canBeNull={false} />
