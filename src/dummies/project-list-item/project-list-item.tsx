@@ -2,7 +2,7 @@ import React from 'react';
 import './project-list-item.scss';
 import { DepositStatus } from '../../models/deposit';
 import { Project } from '../../models/project';
-import DepositListItem from '../../components/deposit-list-item';
+import DepositListItem from '../deposit-list-item';
 import { observer } from 'mobx-react';
 
 interface ProjectListItemProps {

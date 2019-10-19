@@ -4,7 +4,7 @@ import { DepositStatus } from '../../models/deposit';
 import { observer } from 'mobx-react';
 import './deposits.scss';
 import DepositForm from '../../components/deposit-form';
-import DepositListItem from '../../components/deposit-list-item';
+import DepositListItem from '../../dummies/deposit-list-item';
 import Button from '../../dummies/button';
 import { ContextStore } from '../../models/context';
 import { ProjectStore } from '../../models/project';
@@ -26,7 +26,7 @@ export default class Deposits extends React.Component<DepositsProps, DepositsSta
 
     this.state = { filters: { hide: false } };
   }
-  
+
   onChangeStatus = (event: any, id: string) => {
     const depositIndex = this.props.depositStore.deposits.findIndex((d) => d.id === id);
     this.props.depositStore.changeDeposit(depositIndex, {value: '', status: this.props.depositStore.deposits[depositIndex].status === DepositStatus.unprocessed ? DepositStatus.actedUpon : DepositStatus.unprocessed});
