@@ -17,10 +17,10 @@ export default function DepositFormInput(props: DepositFormInputProps) {
 
   return(
     <form onSubmit={onSubmit} className={className}>
-      <input type="text" value={formInput} onChange={onInputChange} className="deposit-input" placeholder={placeholder} />
-      <input type="submit" className="deposit-submit" value="Add" disabled={formInput === ''} />
+      <input data-testid={ props.className + '-test' } type="text" value={formInput} onChange={onInputChange} className="deposit-input" placeholder={placeholder} />
+      <input data-testid={ props.className + '-submit-test' } type="submit" className="deposit-submit" value="Add" disabled={formInput === ''} />
       {formInput !== '' ?
-        (<button type="button" className="deposit-clear" onClick={onInputClear}><X size={20} /></button>) : null
+        (<button data-testid={ props.className + '-clear-test' } type="button" className="deposit-clear" onClick={onInputClear}><X size={20} /></button>) : null
       }
     </form>
   );
