@@ -14,7 +14,7 @@ export enum DepositStatus {
 export const DepositModel = types.model("Deposit")
   .props({
     id: types.optional(types.identifier, 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx'),
-    value: types.string,
+    value: types.optional(types.string, ''),
     status: types.optional(types.enumeration<DepositStatus>("DepositStatus", Object.values(DepositStatus)), DepositStatus.unprocessed),
     dateAdded: types.optional(types.Date, () => new Date()),
     dateEdited: types.optional(types.Date, () => new Date()),

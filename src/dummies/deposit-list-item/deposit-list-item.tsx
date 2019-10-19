@@ -21,7 +21,7 @@ export default function DepositListItem(props: DepositListItemProps) {
 	return(
 		<div className="Deposit-List-Item">
 			<div className="deposit-check">
-				<input type="checkbox" checked={status} onChange={onCheckChange} />
+				<input data-testid="check-test" type="checkbox" checked={status} onChange={onCheckChange} />
 			</div>
 			<div className="deposit-value">
 				<div className="value" style={{textDecoration: status ? 'line-through' : 'none'}}>{value}</div>
