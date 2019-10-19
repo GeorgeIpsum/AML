@@ -29,7 +29,13 @@ export default class Nav extends React.Component<NavProps, NavState> {
     const { navItems } = this.props;
     const { currentNav } = this.state;
     const navs = navItems.slice().map((n) => (
-      <div key={n.name} className={n.name===currentNav ? "nav-item active" : "nav-item"} id={n.name} onClick={this.triggerSegmentChange}>
+      <div 
+        key={n.name}
+        className={n.name===currentNav ? "nav-item active" : "nav-item"}
+        id={n.name}
+        onClick={this.triggerSegmentChange}
+        data-testid={n.name+'-test-nav'}
+      >
         <div className="nav-icon">{n.icon}</div>
         {/* <div className="nav-text">{n.name}</div> */}
       </div>

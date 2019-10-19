@@ -3,6 +3,6 @@ import './stats.scss';
 
 export default function Stats(props) {
   return(
-    <div className="Stats">Soon<sup>TM</sup></div>
+    <div data-testid="root-segment" className="Stats">Stats<sup>TM</sup></div>
   );
 }

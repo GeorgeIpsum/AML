@@ -8,13 +8,17 @@ import Nav from '../segments/nav';
 import { Grid, CheckCircle, Layers, PieChart, Settings } from 'react-feather';
 import Button from '../dummies/button';
 
+interface AppProps {
+  useFirebase?: boolean;
+}
+
 interface AppState {
   rootStore?: RootStore;
   userState: any;
 }
 
 @observer
-export default class App extends React.Component<{}, AppState> {
+export default class App extends React.Component<AppProps, AppState> {
   navItems: any;
   unsubscribeFromAuthStateChanges: firebase.Unsubscribe;
   _isMounted: boolean = false;
@@ -40,7 +44,7 @@ export default class App extends React.Component<{}, AppState> {
       }
     ];
 
-    const rootStore = await setupRootStore(false);
+    const rootStore = await setupRootStore(this.props.useFirebase);
 
     if(this._isMounted) {
       this.setState({
@@ -94,14 +98,14 @@ export default class App extends React.Component<{}, AppState> {
 
     if(!rootStore) {
       return (
-        <div>Initializing...</div>
+        <div data-testid="init" style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignContent: 'center', fontWeight: 'bold'}}>Initializing...</div>
       );
     }
 
     return (
-      <div className={ rootStore.isDarkTheme ? "App Dark" : "App Light" }>
+      <div data-testid="init" className={ rootStore.isDarkTheme ? "App Dark" : "App Light" }>
         <Nav onSegmentChange={this.onSegmentChange} initialNavState={rootStore.currentRoute} navItems={this.navItems} />
-        <div className="App-inner">
+        <div data-testid="init-inner" className="App-inner">
           <RootComponent currentRoute={rootStore.currentRoute} rootStore={rootStore} />
         </div>
         <Button variant="theme" style={{position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.6rem'}} onClick={this.changeTheme}>Change Theme</Button>

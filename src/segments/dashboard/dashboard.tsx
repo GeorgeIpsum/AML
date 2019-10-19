@@ -3,6 +3,6 @@ import './dashboard.scss';
 
 export default function Dashboard(props) {
   return(
-    <div className="Dashboard">Soon<sup>TM</sup></div>
+    <div data-testid="root-segment" className="Dashboard">Soon<sup>TM</sup></div>
   );
 }
