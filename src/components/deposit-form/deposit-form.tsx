@@ -32,7 +32,7 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
         value: this.state.formInput,
         status: DepositStatus.unprocessed,
         context: this.props.context.defaultContext,
-        project: this.props.project.selectedProject
+        project: this.props.project.defaultProject
       };
       this.props.store.addDeposit(deposit);
     }
