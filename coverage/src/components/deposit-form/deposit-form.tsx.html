@@ -25,9 +25,9 @@
         <span class='fraction'>7/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/4</span>
+        <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">40% </span>
@@ -114,13 +114,7 @@
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,12 +169,6 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,11 +185,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { observer } from 'mobx-react';
 import './deposit-form.scss';
-import { X } from 'react-feather';
 import ItemSelect from '../item-select';
 import { DepositStatus, DepositStore } from '../../models/deposit';
 import { ContextStore } from '../../models/context';
 import { ProjectStore } from '../../models/project';
+import DepositFormInput from '../../dummies/deposit-form-input';
 &nbsp;
 interface DepositFormProps {
   store: DepositStore;
@@ -228,7 +216,7 @@ export default class DepositForm extends React.Component&lt;DepositFormProps, De
         value: this.state.formInput,
         status: DepositStatus.unprocessed,
         context: this.props.context.defaultContext,
-        project: this.props.project.selectedProject
+        project: this.props.project.defaultProject
       };
 <span class="cstat-no" title="statement not covered" >      this.props.store.addDeposit(deposit);</span>
     }
@@ -240,7 +228,7 @@ export default class DepositForm extends React.Component&lt;DepositFormProps, De
 <span class="cstat-no" title="statement not covered" >    this.props.store.setCurrentlyTyping(event.target.value);</span>
   }
 &nbsp;
-  clearForm = <span class="fstat-no" title="function not covered" >(e</span>vent?: any) =&gt; {
+  clearForm = <span class="fstat-no" title="function not covered" >(e</span>vent?: React.MouseEvent&lt;HTMLButtonElement, MouseEvent&gt;) =&gt; {
 <span class="cstat-no" title="statement not covered" >    this.setState({ formInput: '' });</span>
 <span class="cstat-no" title="statement not covered" >    this.props.store.setCurrentlyTyping('');</span>
   }
@@ -250,15 +238,9 @@ export default class DepositForm extends React.Component&lt;DepositFormProps, De
 &nbsp;
     return (
       &lt;div className="Deposit-Form"&gt;
-        &lt;form onSubmit={this.onFormSubmit} className="deposit-form-form"&gt;
-          &lt;input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="deposit-form-input" /&gt;
-          &lt;div className="input-border"&gt;&lt;/div&gt;
-          &lt;input type="submit" className="deposit-submit" value="Add" disabled={this.state.formInput === ''} /&gt;
-          {this.state.formInput !== ''
-            ? (<span class="branch-0 cbranch-no" title="branch not covered" >&lt;button type="button" className="deposit-clear" onClick={this.clearForm}&gt;&lt;X size={20} /&gt;&lt;/button&gt;)</span>
-            : null 
-          }
-        &lt;/form&gt;
+        &lt;DepositFormInput className="deposit-form-form" formInput={this.state.formInput} placeholder="What's on your mind?" onSubmit={this.onFormSubmit} onInputChange={this.onInputChange} onInputClear={this.clearForm} /&gt;
+&nbsp;
+        &lt;div className="input-border"&gt;&lt;/div&gt;
 &nbsp;
         &lt;div className="selections"&gt;
           &lt;ItemSelect id="Context" store={context} canBeNull={false} /&gt;
@@ -274,7 +256,7 @@ export default class DepositForm extends React.Component&lt;DepositFormProps, De
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 19 2019 06:41:50 GMT+0000 (Coordinated Universal Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 19 2019 17:13:41 GMT+0000 (Coordinated Universal Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
