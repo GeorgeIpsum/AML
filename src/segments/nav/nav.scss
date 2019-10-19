@@ -17,7 +17,7 @@
   height: 100vh;
   color: $light;
 
-  .Nav-Item {
+  .nav-item {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -42,7 +42,7 @@
       margin-top: auto;
     }
 
-    &.Active {
+    &.active {
       background: lighten($darkest, 10);
     }
   }
@@ -54,7 +54,7 @@
     margin: 0 0rem 1rem 0rem;
     font-size: 1rem;
 
-    .Nav-Item {
+    .nav-item {
       width: auto;
       padding: 0.4rem;
       .nav-icon {

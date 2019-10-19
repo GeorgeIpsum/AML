@@ -30,7 +30,7 @@ export const ContextListStoreModel = types.model("ContextListStore")
         self.defaultContext = id;
       }
     },
-    addContext(name: string = '') {
+    addContext(name: string = 'Context') {
       if(self.contexts) {
         const context: Context = ContextModel.create({
           id: UUIDGenerator(),
@@ -60,6 +60,12 @@ export const ContextListStoreModel = types.model("ContextListStore")
     get isLoading() {
       return self.status === "pending";
     },
+    get defaultItem() {
+      return self.defaultContext;
+    },
+    get items() {
+      return self.contexts;
+    },
     get alphabetical() {
       return self.contexts.slice().sort((c1, c2) => {
         const C1 = c1.name.toUpperCase(); const C2 = c2.name.toUpperCase();
@@ -79,6 +85,14 @@ export const ContextListStoreModel = types.model("ContextListStore")
       if(value) {
         return value;
       } return false;
+    }
+  }))
+  .actions(self => ({
+    addItem(name: string) {
+      self.addContext(name);
+    },
+    setDefaultItem(id: any) {
+      self.setDefaultContext(id);
     }
   }));
 

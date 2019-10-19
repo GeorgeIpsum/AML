@@ -7,7 +7,7 @@
   top: 1rem;
   z-index: 1000;
 
-  .Selections {
+  .selections {
     display: flex;
     width: calc(100% - 0.8rem);
     flex-direction: row;
@@ -24,7 +24,7 @@
   }
 }
 
-.Deposit-Form-Form {
+.deposit-form-form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
   position: relative;
 
   
-  .Deposit-Form-Input {
+  .deposit-form-input {
     transition: all 150ms ease;
     font-size: 16px;
     font-weight: 600;
@@ -49,13 +49,13 @@
     }
   }
 
-  .Input-Border {
+  .input-border {
     width: 100%;
     height: 4px;
     background: darken($cerulean-blue, 10);
   }
 
-  .Deposit-Submit {
+  .deposit-submit {
     transition: all 150ms ease;
     position: absolute;
     right: 0;
@@ -69,22 +69,34 @@
     font-weight: 700;
     padding: 0 1rem;
     color: $other-1;
-    background-color: $cerulean-blue;
-    background: $gradient-1;
+    background: $red-orange-gradient;
     &:hover {
       box-shadow: inset 0 0 12px $gradient-red;
     }
+    &:disabled {
+      background: $gradient-1;
+      &:hover {
+        box-shadow: none;
+      }
+    }
+    &:not(:disabled) {
+      cursor: pointer;
+    }
   }
 
-  .Deposit-Clear {
+  .deposit-clear {
     transition: all 150ms ease;
     position: absolute;
     top: 0;
     right: 56px;
-    padding: 0.4rem 0.4rem;
+    padding: 0.4rem;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
     color: $base-bg;
     &:hover {
-      color: lighten($base-bg, 10%);
+      color: lighten($base-bg, 20%);
     }
   }
 

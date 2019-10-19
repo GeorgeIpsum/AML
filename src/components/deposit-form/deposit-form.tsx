@@ -2,16 +2,17 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import './deposit-form.scss';
 import { X } from 'react-feather';
-import ContextSelect from '../context-select';
+import ItemSelect from '../item-select';
 import { DepositStatus } from '../../models/deposit';
 
 interface DepositFormProps {
-  store: any,
-  context: any
+  store: any;
+  context: any;
+  project: any;
 };
 
 interface DepositFormState {
-  formInput: string
+  formInput: string;
 };
 
 @observer
@@ -28,7 +29,8 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
       const deposit = {
         value: this.state.formInput,
         status: DepositStatus.unprocessed,
-        context: this.props.context.defaultContext
+        context: this.props.context.defaultContext,
+        project: this.props.project.selectedProject
       };
       this.props.store.addDeposit(deposit);
     }
@@ -46,22 +48,23 @@ export default class DepositForm extends React.Component<DepositFormProps, Depos
   }
 
   render() {
-    const contexts = this.props.context;
+    const { context, project } = this.props;
 
     return (
       <div className="Deposit-Form">
-        <form onSubmit={this.onFormSubmit} className="Deposit-Form-Form">
-          <input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="Deposit-Form-Input" />
-          <div className="Input-Border"></div>
-          <input type="submit" className="Button Deposit-Submit" value="Add" />
+        <form onSubmit={this.onFormSubmit} className="deposit-form-form">
+          <input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="deposit-form-input" />
+          <div className="input-border"></div>
+          <input type="submit" className="deposit-submit" value="Add" disabled={this.state.formInput === ''} />
           {this.state.formInput !== ''
-            ? (<button type="button" className="Button Deposit-Clear" onClick={this.clearForm}><X size={20} /></button>)
+            ? (<button type="button" className="deposit-clear" onClick={this.clearForm}><X size={20} /></button>)
             : null 
           }
         </form>
 
-        <div className="Selections">
-          <ContextSelect store={contexts} />
+        <div className="selections">
+          <ItemSelect id="Context" store={context} canBeNull={false} />
+          <ItemSelect id="Project" store={project} canBeNull={true} />
         </div>
       </div>
     );

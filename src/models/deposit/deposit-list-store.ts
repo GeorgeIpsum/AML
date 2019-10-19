@@ -30,15 +30,14 @@ export const DepositListStoreModel = types.model("DepositListStore")
     setCurrentlyTyping(value: string) {
       self.currentlyTyping = value;
     },
-    addDeposit({value, status, context} = {value: '', status: DepositStatus.unprocessed, context: ''}): boolean {
+    addDeposit({value, status, context, project} = {value: '', status: DepositStatus.unprocessed, context: '', project: ''}): boolean {
       if(self.deposits) {
         const deposit: Deposit = DepositModel.create({
           id: UUIDGenerator(),
           value: value,
           status: status,
-          dateAdded: new Date(),
-          dateEdited: new Date(),
-          contextId: context
+          contextId: context,
+          projectId: project
         });
         const deposits = [...self.deposits, ...[deposit]];
         self.deposits.replace(deposits as any);
@@ -67,6 +66,9 @@ export const DepositListStoreModel = types.model("DepositListStore")
     },
     get isLoading() {
       return self.status === "pending";
+    },
+    get items() {
+      return self.deposits;
     },
     get chronological() {
       return self.deposits.slice().sort((d1, d2) => {

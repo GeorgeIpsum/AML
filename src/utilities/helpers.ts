@@ -237,7 +237,7 @@ export const toHash = (object: Object, key: string) => {
 }
 
 /**
- * Generates a UUID in a browser
+ * Generates a UUID in a browser, uses a homegrown getRandomValues implementation if the window.crypto object is undefined
  */
 export const UUIDGenerator = () => {
   const rand = typeof crypto === 'object' ? crypto.getRandomValues(new Uint8Array(1)) : getRandomValues(new Uint8Array(1));

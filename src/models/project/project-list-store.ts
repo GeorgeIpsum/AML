@@ -8,6 +8,8 @@ export const ProjectListStoreModel = types.model("ProjectListStore")
   .props({
     status: types.optional(types.enumeration<LoadingStatus>("ProjectListLoadingStatus", Object.values(LoadingStatus)), LoadingStatus.idle),
     projects: types.optional(types.array(ProjectModel), []),
+    defaultProject: types.optional(types.string, ''),
+    selectedProject: types.optional(types.string, '')
   })
   .actions(self => ({
     setStatus(value: LoadingStatus) {
@@ -24,7 +26,10 @@ export const ProjectListStoreModel = types.model("ProjectListStore")
         self.projects.clear();
       }
     },
-    addProject(name: string) {
+    setDefaultItem(id: any) {
+      self.selectedProject = id;
+    },
+    addProject(name: string = 'Project') {
       if(self.projects) {
         const project: Project = ProjectModel.create({
           id: UUIDGenerator(),
@@ -54,6 +59,12 @@ export const ProjectListStoreModel = types.model("ProjectListStore")
     get isLoading() {
       return self.status === "pending";
     },
+    get defaultItem() {
+      return self.defaultProject;
+    },
+    get items() {
+      return self.projects;
+    },
     get alphabetical() {
       return self.projects.slice().sort((p1, p2) => {
         const P1 = p1.name.toUpperCase(); const P2 = p2.name.toUpperCase();
@@ -69,6 +80,19 @@ export const ProjectListStoreModel = types.model("ProjectListStore")
           return value;
         } return false;
       } return false;
+    },
+    findByName(name: string) {
+      if(self.projects) {
+        const value = self.projects.find((v) => v.name === name);
+        if(value) { 
+          return value;
+        } return false;
+      } return false;
+    }
+  }))
+  .actions(self => ({
+    addItem(name: string) {
+      self.addProject(name);
     }
   }));
 

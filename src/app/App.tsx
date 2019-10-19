@@ -9,8 +9,8 @@ import { Grid, CheckCircle, Layers, PieChart, Settings } from 'react-feather';
 import Button from '../dummies/button';
 
 interface AppState {
-  rootStore?: RootStore,
-  userState: any,
+  rootStore?: RootStore;
+  userState: any;
 }
 
 @observer
@@ -98,14 +98,11 @@ export default class App extends React.Component<{}, AppState> {
       );
     }
 
-    const depositStore = rootStore.depositStore;
-    const contextStore = rootStore.contextStore;
-
     return (
       <div className={ rootStore.isDarkTheme ? "App Dark" : "App Light" }>
         <Nav onSegmentChange={this.onSegmentChange} initialNavState={rootStore.currentRoute} navItems={this.navItems} />
         <div className="App-inner">
-          <RootComponent currentRoute={rootStore.currentRoute} rootStore={rootStore} depositStore={depositStore} contextStore={contextStore} />
+          <RootComponent currentRoute={rootStore.currentRoute} rootStore={rootStore} />
         </div>
         <Button variant="theme" style={{position: 'fixed', bottom: '1rem', right: '1rem', padding: '0.6rem'}} onClick={this.changeTheme}>Change Theme</Button>
       </div>
