@@ -10,13 +10,13 @@
   border-bottom: 3px solid darken($base-bg, 2);
   color: $other-1;
 
-  .Deposit-Check {
+  .deposit-check {
     margin-right: 1rem;
   }
 
-  .Deposit-Value {
+  .deposit-value {
     width: 100%;
-    .Value {
+    .value {
       font-weight: 600;
       text-decoration-color: rgba(255,255,255,0.7);
     }
@@ -29,10 +29,13 @@
         width: auto;
         margin-right: 1rem;
       }
-      .Context {
+      .context {
         color: $cherry; 
       }
-      .Date {
+      .project {
+        color: $maximum-blue-green;
+      }
+      .date {
         margin-left: auto;
         color: $maximum-blue-green;
       }

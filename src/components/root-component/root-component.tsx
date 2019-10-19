@@ -1,7 +1,6 @@
 import React from 'react';
 import { RootStore } from '../../models/root-store';
-import { DepositStore } from '../../models/deposit';
-import { ContextStore } from '../../models/context';
+
 import { observer } from 'mobx-react';
 import './root-component.scss';
 import Dashboard from '../../segments/dashboard';
@@ -12,8 +11,6 @@ import Options from '../../segments/options';
 
 interface RootComponentProps {
   rootStore: RootStore;
-  depositStore: DepositStore;
-  contextStore: ContextStore;
   currentRoute: string;
 }
 
@@ -24,17 +21,20 @@ interface RootComponentState {
 export default class RootComponent extends React.Component<RootComponentProps, RootComponentState> {
 
   render() {
-    const { depositStore, contextStore, currentRoute } = this.props;
+    const { rootStore, currentRoute } = this.props;
+    const depositStore = rootStore.depositStore;
+    const contextStore = rootStore.contextStore;
+    const projectStore = rootStore.projectStore;
     let navItem;
     switch(currentRoute) {
       case "dashboard":
         navItem = (<Dashboard />);
         break;
       case "deposits":
-        navItem = (<Deposits depositStore={depositStore} contextStore={contextStore} />);
+        navItem = (<Deposits depositStore={depositStore} contextStore={contextStore} projectStore={projectStore} />);
         break;
       case "projects":
-        navItem = (<Projects />);
+        navItem = (<Projects stores={rootStore} />);
         break;
       case "stats":
         navItem = (<Stats />);
@@ -43,7 +43,7 @@ export default class RootComponent extends React.Component<RootComponentProps, R
         navItem = (<Options />);
         break;
       default:
-        navItem = (<Deposits depositStore={depositStore} contextStore={contextStore} />);
+        navItem = (<Deposits depositStore={depositStore} contextStore={contextStore} projectStore={projectStore} />);
         break;
     }
 

@@ -18,12 +18,12 @@ export const DepositModel = types.model("Deposit")
     status: types.optional(types.enumeration<DepositStatus>("DepositStatus", Object.values(DepositStatus)), DepositStatus.unprocessed),
     dateAdded: types.optional(types.Date, new Date()),
     dateEdited: types.optional(types.Date, new Date()),
-    contextId: types.optional(types.string, '')
+    dateCompleted: types.optional(types.union(types.boolean, types.Date), false),
+    positionInProject: types.optional(types.union(types.null, types.number), null),
+    contextId: types.optional(types.string, ''),
+    projectId: types.optional(types.string, '')
   })
   .actions(self => ({
-    setId(value: string) {
-      self.id = value;
-    },
     setValue(value: string) {
       self.value = value;
       self.dateEdited = new Date();
@@ -31,15 +31,32 @@ export const DepositModel = types.model("Deposit")
     setStatus(value: DepositStatus) {
       self.status = value;
       self.dateEdited = new Date();
+    },
+    setContext(value: string) {
+      const root = getRoot(self);
+      if(root && root.contextStore && root.contextStore.findById(value)) {
+        self.contextId = value;
+      }
+    },
+    setProject(value: string) {
+      const root = getRoot(self);
+      if(root && root.projectStore && root.projectStore.findById(value)) {
+        self.projectId = value;
+      }
     }
   }))
   .views(self => ({
     get context() {
       const root = getRoot(self);
-      if(root && root.contextStore) {
+      if(root && root.contextStore && self.contextId!=='') {
         return root.contextStore.findById(self.contextId);
-      }
-      return '';
+      } return '';
+    },
+    get project() {
+      const root = getRoot(self);
+      if(root && root.projectStore && self.projectId!=='') {
+        return root.projectStore.findById(self.projectId);
+      } return '';
     }
   }));
 
