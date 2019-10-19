@@ -2,13 +2,13 @@ import React from 'react';
 import './deposit-list-item.scss';
 
 type DepositListItemProps = {
-	value: string,
-	date: Date,
-	status: boolean,
-	changeStatus: any,
-	context: any,
-	project: any,
-	depositId: string
+	value: string;
+	date: Date;
+	status: boolean;
+	changeStatus: any;
+	context: any;
+	project: any;
+	depositId: string;
 };
 
 export default function DepositListItem(props: DepositListItemProps) {
