@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/fruition/static/css/main.b644bb83.chunk.css",
-    "main.js": "/fruition/static/js/main.13a7fbeb.chunk.js",
-    "main.js.map": "/fruition/static/js/main.13a7fbeb.chunk.js.map",
+    "main.js": "/fruition/static/js/main.8b9999c4.chunk.js",
+    "main.js.map": "/fruition/static/js/main.8b9999c4.chunk.js.map",
     "runtime-main.js": "/fruition/static/js/runtime-main.1da8d57f.js",
     "runtime-main.js.map": "/fruition/static/js/runtime-main.1da8d57f.js.map",
     "static/js/2.059d4062.chunk.js": "/fruition/static/js/2.059d4062.chunk.js",
     "static/js/2.059d4062.chunk.js.map": "/fruition/static/js/2.059d4062.chunk.js.map",
     "index.html": "/fruition/index.html",
-    "precache-manifest.ded32ffd5da08235cdc958e625c95f48.js": "/fruition/precache-manifest.ded32ffd5da08235cdc958e625c95f48.js",
+    "precache-manifest.4639eaef98d38bc8c6171d6fc88fdea2.js": "/fruition/precache-manifest.4639eaef98d38bc8c6171d6fc88fdea2.js",
     "service-worker.js": "/fruition/service-worker.js",
     "static/css/main.b644bb83.chunk.css.map": "/fruition/static/css/main.b644bb83.chunk.css.map",
     "static/media/fruition.png": "/fruition/static/media/fruition.6e664e81.png"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.1da8d57f.js",
     "static/js/2.059d4062.chunk.js",
     "static/css/main.b644bb83.chunk.css",
-    "static/js/main.13a7fbeb.chunk.js"
+    "static/js/main.8b9999c4.chunk.js"
   ]
 }
