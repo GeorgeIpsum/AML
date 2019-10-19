@@ -110,7 +110,12 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -135,6 +140,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -180,17 +186,19 @@ import { DepositStatus } from '../../models/deposit';
 import { observer } from 'mobx-react';
 import './deposits.scss';
 import DepositForm from '../../components/deposit-form';
-import DepositListItem from '../../components/deposit-list-item';
+import DepositListItem from '../../dummies/deposit-list-item';
 import Button from '../../dummies/button';
 import { ContextStore } from '../../models/context';
+import { ProjectStore } from '../../models/project';
 &nbsp;
 interface DepositsProps {
   depositStore: DepositStore;
   contextStore: ContextStore;
+  projectStore: ProjectStore;
 }
 &nbsp;
 interface DepositsState {
-  filters: any
+  filters: any;
 }
 &nbsp;
 @observer
@@ -200,6 +208,7 @@ export default class Deposits extends React.Component&lt;DepositsProps, Deposits
 &nbsp;
     this.state = { filters: { hide: false } };
   }
+&nbsp;
   onChangeStatus = <span class="fstat-no" title="function not covered" >(e</span>vent: any, id: string) =&gt; {
     const depositIndex = <span class="cstat-no" title="statement not covered" >this.props.depositStore.deposits.findIndex(<span class="fstat-no" title="function not covered" >(d</span>) =&gt; <span class="cstat-no" title="statement not covered" >d.id === id)</span>;</span>
 <span class="cstat-no" title="statement not covered" >    this.props.depositStore.changeDeposit(depositIndex, {value: '', status: this.props.depositStore.deposits[depositIndex].status === DepositStatus.unprocessed ? DepositStatus.actedUpon : DepositStatus.unprocessed});</span>
@@ -217,19 +226,19 @@ export default class Deposits extends React.Component&lt;DepositsProps, Deposits
     const deposits = this.props.depositStore.chronological.map((d) =&gt; {
       <span class="missing-if-branch" title="else path not taken" >E</span>if(!this.state.filters.hide) {
         <span class="missing-if-branch" title="else path not taken" >E</span>if(d.status===DepositStatus.unprocessed) {
-          return (&lt;DepositListItem key={d.id} depositId={d.id} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} /&gt;)
+          return (&lt;DepositListItem key={d.id} depositId={d.id} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} project={this.props.projectStore.findById(d.projectId)} /&gt;)
         } else {
 <span class="cstat-no" title="statement not covered" >          return null;</span>
         }
       } else {
-<span class="cstat-no" title="statement not covered" >        return (&lt;DepositListItem key={d.id} depositId={d.id} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} /&gt;)</span>
+<span class="cstat-no" title="statement not covered" >        return (&lt;DepositListItem key={d.id} depositId={d.id} value={d.value} status={d.status !== DepositStatus.unprocessed} date={d.dateAdded} changeStatus={this.onChangeStatus} context={this.props.contextStore.findById(d.contextId)} project={this.props.projectStore.findById(d.projectId)} /&gt;)</span>
       }
     }) as any;
 &nbsp;
     return (
       &lt;div className="Deposits"&gt;
-        &lt;DepositForm store={this.props.depositStore} context={this.props.contextStore} /&gt;
-        &lt;div className="Deposit-List"&gt;
+        &lt;DepositForm store={this.props.depositStore} context={this.props.contextStore} project={this.props.projectStore} /&gt;
+        &lt;div className="deposit-list"&gt;
           { deposits }
         &lt;/div&gt;
         &lt;Button style={{padding: '0.5rem', marginRight: '0.4rem'}} onClick={this.onClear}&gt;Clear Deposits&lt;/Button&gt;
@@ -244,7 +253,7 @@ export default class Deposits extends React.Component&lt;DepositsProps, Deposits
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 16 2019 21:19:15 GMT+0000 (Coordinated Universal Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 19 2019 06:41:50 GMT+0000 (Coordinated Universal Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>

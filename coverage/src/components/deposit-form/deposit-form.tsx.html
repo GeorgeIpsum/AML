@@ -115,7 +115,12 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,6 +136,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,34 +176,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -188,16 +198,19 @@
 import { observer } from 'mobx-react';
 import './deposit-form.scss';
 import { X } from 'react-feather';
-import ContextSelect from '../context-select';
-import { DepositStatus } from '../../models/deposit';
+import ItemSelect from '../item-select';
+import { DepositStatus, DepositStore } from '../../models/deposit';
+import { ContextStore } from '../../models/context';
+import { ProjectStore } from '../../models/project';
 &nbsp;
 interface DepositFormProps {
-  store: any,
-  context: any
+  store: DepositStore;
+  context: ContextStore;
+  project: ProjectStore;
 };
 &nbsp;
 interface DepositFormState {
-  formInput: string
+  formInput: string;
 };
 &nbsp;
 @observer
@@ -214,7 +227,8 @@ export default class DepositForm extends React.Component&lt;DepositFormProps, De
       const deposit = <span class="cstat-no" title="statement not covered" >{</span>
         value: this.state.formInput,
         status: DepositStatus.unprocessed,
-        context: this.props.context.defaultContext
+        context: this.props.context.defaultContext,
+        project: this.props.project.selectedProject
       };
 <span class="cstat-no" title="statement not covered" >      this.props.store.addDeposit(deposit);</span>
     }
@@ -232,22 +246,23 @@ export default class DepositForm extends React.Component&lt;DepositFormProps, De
   }
 &nbsp;
   render() {
-    const contexts = this.props.context;
+    const { context, project } = this.props;
 &nbsp;
     return (
       &lt;div className="Deposit-Form"&gt;
-        &lt;form onSubmit={this.onFormSubmit} className="Deposit-Form-Form"&gt;
-          &lt;input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="Deposit-Form-Input" /&gt;
-          &lt;div className="Input-Border"&gt;&lt;/div&gt;
-          &lt;input type="submit" className="Button Deposit-Submit" value="Add" /&gt;
+        &lt;form onSubmit={this.onFormSubmit} className="deposit-form-form"&gt;
+          &lt;input type="text" value={this.state.formInput} onChange={this.onInputChange}  className="deposit-form-input" /&gt;
+          &lt;div className="input-border"&gt;&lt;/div&gt;
+          &lt;input type="submit" className="deposit-submit" value="Add" disabled={this.state.formInput === ''} /&gt;
           {this.state.formInput !== ''
-            ? (<span class="branch-0 cbranch-no" title="branch not covered" >&lt;button type="button" className="Button Deposit-Clear" onClick={this.clearForm}&gt;&lt;X size={20} /&gt;&lt;/button&gt;)</span>
+            ? (<span class="branch-0 cbranch-no" title="branch not covered" >&lt;button type="button" className="deposit-clear" onClick={this.clearForm}&gt;&lt;X size={20} /&gt;&lt;/button&gt;)</span>
             : null 
           }
         &lt;/form&gt;
 &nbsp;
-        &lt;div className="Selections"&gt;
-          &lt;ContextSelect store={contexts} /&gt;
+        &lt;div className="selections"&gt;
+          &lt;ItemSelect id="Context" store={context} canBeNull={false} /&gt;
+          &lt;ItemSelect id="Project" store={project} canBeNull={true} /&gt;
         &lt;/div&gt;
       &lt;/div&gt;
     );
@@ -259,7 +274,7 @@ export default class DepositForm extends React.Component&lt;DepositFormProps, De
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 16 2019 21:19:15 GMT+0000 (Coordinated Universal Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 19 2019 06:41:50 GMT+0000 (Coordinated Universal Time)
 </div>
 </div>
 <script src="../../../prettify.js"></script>
