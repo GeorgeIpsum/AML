@@ -28,6 +28,8 @@ export async function setupRootStore(useFirebase?: boolean) {
     storage.save(ROOT_STATE_STORAGE_KEY, getSnapshot(rootStore));
   }
 
+  handleInitialStateChanges(rootStore);
+
   onSnapshot(rootStore, snapshot => storage.save(ROOT_STATE_STORAGE_KEY, snapshot));
 
   return rootStore;
@@ -60,4 +62,8 @@ export function defaultRootStore() {
   });
 
   return { depositStore: defaultDepositListStore, contextStore: defaultContextListStore };
+}
+
+function handleInitialStateChanges(rootStore: RootStore) {
+  rootStore.projectStore.setDefaultProject();
 }

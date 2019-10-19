@@ -9,7 +9,6 @@ export const ProjectListStoreModel = types.model("ProjectListStore")
     status: types.optional(types.enumeration<LoadingStatus>("ProjectListLoadingStatus", Object.values(LoadingStatus)), LoadingStatus.idle),
     projects: types.optional(types.array(ProjectModel), []),
     defaultProject: types.optional(types.string, ''),
-    selectedProject: types.optional(types.string, '')
   })
   .actions(self => ({
     setStatus(value: LoadingStatus) {
@@ -26,8 +25,8 @@ export const ProjectListStoreModel = types.model("ProjectListStore")
         self.projects.clear();
       }
     },
-    setDefaultItem(id: any) {
-      self.selectedProject = id;
+    setDefaultProject(id: any = '') {
+      self.defaultProject = id;
     },
     addProject(name: string = 'Project') {
       if(self.projects) {
@@ -93,7 +92,10 @@ export const ProjectListStoreModel = types.model("ProjectListStore")
   .actions(self => ({
     addItem(name: string) {
       self.addProject(name);
-    }
+    },
+    setDefaultItem(id: any = '') {
+      self.setDefaultProject(id);
+    },
   }));
 
 type ProjectStoreType = typeof ProjectListStoreModel.Type;
