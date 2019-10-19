@@ -1,7 +1,7 @@
 import { Api } from '../services/api';
 import { DepositApi } from '../services/deposit-api';
 import { ContextApi } from '../services/context-api';
-import * as env from '../../env';
+import * as env from '../env';
 
 export class Environment {
   api: Api;
