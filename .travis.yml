@@ -14,6 +14,7 @@ branches:
     - gh-pages
 
 script:
+  - cp src/env.default.ts src/env.ts
   - yarn test --coverage --watchAll=false
   - yarn build
   - echo 'COPYING COVERAGE' && [ -e coverage/lcov-report ] && cp -a coverage/lcov-report build/coverage

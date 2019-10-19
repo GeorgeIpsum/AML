@@ -58,7 +58,8 @@ export function defaultRootStore() {
   defaultDepositListStore.addDeposit({
     value: 'Hey there! Welcome to fruition.',
     status: DepositStatus.unprocessed,
-    context: defaultContextListStore.contexts[0].id
+    context: defaultContextListStore.contexts[0].id,
+    project: ''
   });
 
   return { depositStore: defaultDepositListStore, contextStore: defaultContextListStore };

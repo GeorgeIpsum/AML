@@ -26,9 +26,12 @@ export class Api {
     });
 
     if(useFirebase) {
-      app.initializeApp(firebaseConfig);
-
-      this.auth = app.auth();
+      try {
+        app.initializeApp(firebaseConfig);
+        this.auth = app.auth();
+      } catch(e) {
+        console.log(e);
+      }
     }
   }
 

@@ -1,13 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import DepositFormInput from './deposit-form-input';
 
 const genericEventHandler = (event: any) => {
   console.log(event);
 }
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<DepositFormInput className="deposit-form-form" formInput="test" placeholder="What's cookin" onSubmit={genericEventHandler} onInputChange={genericEventHandler} onInputClear={genericEventHandler} />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("DepositFormInput", () => {
+  it('renders and unmounts without crashing', () => {
+    const { unmount } = render(<DepositFormInput className="test" formInput="value" placeholder="what's up doc" onSubmit={() => genericEventHandler} onInputChange={() => genericEventHandler} onInputClear={genericEventHandler} />);
+
+
+    unmount();
+  });
+
+  it('fires generic callback', async () => {
+    const { unmount, getByTestId } = render(<DepositFormInput className="test" formInput="value" placeholder="what's up doc" onSubmit={() => genericEventHandler} onInputChange={() => genericEventHandler} onInputClear={genericEventHandler} />);
+    const input = getByTestId('test-test');
+
+    fireEvent.focus(input);
+    fireEvent.change(input, {target: {value: 't'}});
+
+    unmount();
+  });
 });
