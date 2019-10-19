@@ -19,6 +19,7 @@ export const DepositModel = types.model("Deposit")
     dateAdded: types.optional(types.Date, new Date()),
     dateEdited: types.optional(types.Date, new Date()),
     dateCompleted: types.optional(types.union(types.boolean, types.Date), false),
+    positionInProject: types.optional(types.union(types.null, types.number), null),
     contextId: types.optional(types.string, ''),
     projectId: types.optional(types.string, '')
   })

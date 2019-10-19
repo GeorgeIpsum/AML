@@ -29,15 +29,14 @@ export default class DepositListItem extends React.Component<DepositListItemProp
 	}
 
 	render() {
-		const { value, date, context, project } = this.props;
-		const { checked } = this.state;
+		const { value, date, context, project, status } = this.props;
 		return(
 			<div className="Deposit-List-Item">
 				<div className="deposit-check">
-					<input type="checkbox" checked={checked} onChange={this.onCheckChange} />
+					<input type="checkbox" checked={status} onChange={this.onCheckChange} />
 				</div>
 				<div className="deposit-value">
-					<div className="value" style={{textDecoration: checked ? 'line-through' : 'none'}}>{value}</div>
+					<div className="value" style={{textDecoration: status ? 'line-through' : 'none'}}>{value}</div>
 					<div className="subitems">
 						<div className="context">{ context.name }</div>
 						{ project ? (<div className="project">PROJECT: { project.name }</div>) : null }

@@ -12,7 +12,7 @@ export const DepositListStoreModel = types.model("DepositListStore")
     deposits: types.optional(types.array(DepositModel), []),
     currentlyTyping: types.optional(types.string, '')
   })
-  .actions(self => ({ //all setters go here
+  .actions(self => ({
     setStatus(value: LoadingStatus) {
       self.status = value;
     },
@@ -32,14 +32,27 @@ export const DepositListStoreModel = types.model("DepositListStore")
     },
     addDeposit({value, status, context, project} = {value: '', status: DepositStatus.unprocessed, context: '', project: ''}): boolean {
       if(self.deposits) {
-        const deposit: Deposit = DepositModel.create({
+        const deposit = {
           id: UUIDGenerator(),
+          contextId: context,
+          projectId: project,
           value: value,
           status: status,
-          contextId: context,
-          projectId: project
-        });
-        const deposits = [...self.deposits, ...[deposit]];
+          positionInProject: null
+        };
+
+        if(project && project!=='') {
+          const root = getRoot(self);
+          if(root && root.projectStore) {
+            const projectObj = root.projectStore.findById(project);
+            if(projectObj) {
+              deposit.positionInProject = projectObj.deposits.length;
+            }
+          }
+        }
+
+        const added: Deposit = DepositModel.create(deposit);
+        const deposits = [...self.deposits, ...[added]];
         self.deposits.replace(deposits as any);
         return true;
       } return false;
@@ -104,6 +117,14 @@ export const DepositListStoreModel = types.model("DepositListStore")
       } else {
         return self.chronological;
       }
+    },
+    findById(id: string) {
+      if(self.deposits) {
+        const value = self.deposits.find((d) => d.id === id);
+        if(value) {
+          return value;
+        } return false;
+      } return false;
     },
     findByContext(contextID: string) {
       return self.deposits.filter((deposit) => deposit.contextId === contextID);

@@ -34,7 +34,7 @@ export default class RootComponent extends React.Component<RootComponentProps, R
         navItem = (<Deposits depositStore={depositStore} contextStore={contextStore} projectStore={projectStore} />);
         break;
       case "projects":
-        navItem = (<Projects />);
+        navItem = (<Projects stores={rootStore} />);
         break;
       case "stats":
         navItem = (<Stats />);

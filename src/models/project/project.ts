@@ -23,6 +23,9 @@ export const ProjectModel = types.model("Project")
       if(root && root.depositStore) {
         return root.depositStore.findByProject(self.id);
       } return [];
+    },
+    get rootStore() {
+      return getRoot(self);
     }
   }));
 

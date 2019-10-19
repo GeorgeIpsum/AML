@@ -3,12 +3,14 @@ import { observer } from 'mobx-react';
 import './deposit-form.scss';
 import { X } from 'react-feather';
 import ItemSelect from '../item-select';
-import { DepositStatus } from '../../models/deposit';
+import { DepositStatus, DepositStore } from '../../models/deposit';
+import { ContextStore } from '../../models/context';
+import { ProjectStore } from '../../models/project';
 
 interface DepositFormProps {
-  store: any;
-  context: any;
-  project: any;
+  store: DepositStore;
+  context: ContextStore;
+  project: ProjectStore;
 };
 
 interface DepositFormState {

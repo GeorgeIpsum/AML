@@ -26,6 +26,7 @@ export default class Deposits extends React.Component<DepositsProps, DepositsSta
 
     this.state = { filters: { hide: false } };
   }
+  
   onChangeStatus = (event: any, id: string) => {
     const depositIndex = this.props.depositStore.deposits.findIndex((d) => d.id === id);
     this.props.depositStore.changeDeposit(depositIndex, {value: '', status: this.props.depositStore.deposits[depositIndex].status === DepositStatus.unprocessed ? DepositStatus.actedUpon : DepositStatus.unprocessed});
